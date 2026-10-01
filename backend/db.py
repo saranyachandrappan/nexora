@@ -492,7 +492,172 @@ Official Helplines: +91 9786911333 / +91 9442000648
 - Residential Hostels (Boys & Girls) with 24/7 Security and Resident Wardens
 - Transport Fleet of 26 College Buses covering Salem, Sankari, Tiruchengode, Edappadi, Rasipuram, Omalur, Erode districts
 - Admission Enquiry Helpline: +91 9786911333, +91 9442000648"""
-        }
+        },
+{
+        "title": "AEC Academic Calendar 2026-2027: Semester Working Days, CIA Schedule & Holidays",
+        "filename": "aec_academic_calendar_2026_27.txt",
+        "file_type": "text/plain",
+        "department": "Academic Affairs",
+        "doc_type": "circular",
+        "year_regulation": "2026-2027",
+        "access_level": "all",
+        "effective_date": "2026-08-10",
+        "urgency": "urgent",
+        "raw_text": """--- Page 1 ---
+ANNAPOORANA ENGINEERING COLLEGE (AEC), SALEM
+OFFICIAL ACADEMIC CALENDAR & SCHEDULE FOR ODD & EVEN SEMESTERS (ACADEMIC YEAR 2026-2027)
+
+1. SEMESTER DATES & INSTRUCTIONAL PERIOD:
+- Commencement of Classes for Odd Semester: August 16, 2026.
+- Last Working Day for Odd Semester: November 28, 2026.
+- Total Instructional Working Days: 90 Days (Minimum mandatory requirement as per Anna University CAC norms).
+- Commencement of Even Semester Classes: January 04, 2027.
+
+2. CONTINUOUS INTERNAL ASSESSMENT (CIA) TESTS SCHEDULE:
+- CIA Test 1 (IAT-1): September 22 to September 28, 2026 (Portions: Units I & II).
+- Mark Entry & Web Attendance Period 1: October 03, 2026 on Anna University portal.
+- CIA Test 2 (IAT-2): November 10 to November 16, 2026 (Portions: Units III, IV & V).
+- Model Practical Examinations: November 18 to November 24, 2026.
+
+--- Page 2 ---
+3. ANNA UNIVERSITY END SEMESTER EXAMINATION TIMINGS:
+- Practical Examination Window: November 30 to December 08, 2026.
+- Theory Examination Window: December 11 to December 30, 2026.
+- Forenoon Session (FN): 10:00 AM to 01:00 PM.
+- Afternoon Session (AN): 02:00 PM to 05:00 PM.
+
+4. OFFICIAL LIST OF CAMPUS HOLIDAYS (ODD SEM):
+- Vinayaka Chaturthi: September 07, 2026.
+- Gandhi Jayanthi: October 02, 2026.
+- Ayutha Pooja & Vijaya Dasami: October 11 & 12, 2026.
+- Deepavali Festival: October 31 to November 02, 2026.
+- Christmas Celebration: December 25, 2026."""
+    },
+    {
+        "title": "AEC Department of AI & Data Science: Curriculum Structure, Labs & Naan Mudhalvan Modules",
+        "filename": "aec_aids_curriculum_manual.txt",
+        "file_type": "text/plain",
+        "department": "Artificial Intelligence & Data Science (AI&DS)",
+        "doc_type": "regulation",
+        "year_regulation": "R2021",
+        "access_level": "all",
+        "effective_date": "2026-07-15",
+        "urgency": "normal",
+        "raw_text": """--- Page 1 ---
+ANNAPOORANA ENGINEERING COLLEGE, SALEM
+DEPARTMENT OF ARTIFICIAL INTELLIGENCE & DATA SCIENCE (AI & DS)
+PROGRAMME SPECIFICATION & LABORATORY GUIDELINES (B.TECH AI & DS - R2021 CBCS)
+
+1. CORE TECHNICAL COURSES & CREDIT DISTRIBUTION:
+- Semester 3: Foundations of Data Science, Data Structures & Algorithms, Python for Machine Learning, Digital Logic & Microcontrollers.
+- Semester 4: Database Management Systems, Machine Learning Techniques, Applied Statistics & Linear Algebra, Design & Analysis of Algorithms.
+- Semester 5: Deep Learning Architectures, Natural Language Processing, Computer Vision & Image Analytics, Web Technologies Lab.
+- Semester 6: Big Data Analytics, Cloud Computing with AWS/Azure, AI Ethics & Cyber Laws, Naan Mudhalvan Generative AI Specialization.
+- Semester 7: Reinforcement Learning, MLOps & Production Pipelines, Open Electives & Industrial Project Phase-I.
+- Semester 8: Industrial Internship (Full Semester NOC) & Capstone Project Phase-II.
+
+--- Page 2 ---
+2. ADVANCED COMPUTING LAB FACILITIES:
+- AICTE Idea Lab & GPU High-Performance Cluster: NVIDIA RTX 4090 Workstations for Deep Learning model training.
+- IBM Center of Excellence: Specialized curriculum modules on IBM Cloud Pak for Data, Watson Discovery, and Red Hat OpenShift.
+- Data Engineering Studio: 70 Core-i7 desktop nodes running Ubuntu Linux, Apache Spark, Hadoop, and PostgreSQL.
+- Coding Club & Hackathon Hub: 24x7 high-speed 1 Gbps leased line internet connection for student participation in Smart India Hackathon (SIH) and Tamil Nadu State Hackathons."""
+    },
+    {
+        "title": "AEC Central Library & Digital Knowledge Center: DELNET Access, Book Lending & E-Resources Policy",
+        "filename": "aec_library_policy.txt",
+        "file_type": "text/plain",
+        "department": "Library Services",
+        "doc_type": "notice",
+        "year_regulation": "2026-2027",
+        "access_level": "all",
+        "effective_date": "2026-08-01",
+        "urgency": "normal",
+        "raw_text": """--- Page 1 ---
+ANNAPOORANA ENGINEERING COLLEGE (AEC), SALEM
+CENTRAL LIBRARY & DIGITAL INFORMATION RESOURCE CENTRE (DIRC)
+RULES, CIRCULATION REGULATIONS & DIGITAL ACCESS MANUAL
+
+1. LIBRARY WORKING HOURS:
+- Working Days (Monday to Saturday): 08:30 AM to 06:00 PM.
+- Examination Preparation Period: 08:00 AM to 07:30 PM.
+- Digital Library & Internet Lab: 09:00 AM to 05:30 PM.
+
+2. BOOK BORROWING PRIVILEGES & LOAN PERIOD:
+- Under Graduate Students (B.E. / B.Tech): 4 Library Borrower Cards (Loan Period: 14 Days).
+- Post Graduate Students (M.E.): 6 Library Borrower Cards (Loan Period: 21 Days).
+- Faculty Members: 8 Books (Loan Period: One Full Semester).
+- Renewal & Late Return Overdue Charges: Books can be renewed once for an additional 14 days if there are no advance reservations. An overdue fine of INR 2/- per day per volume will be charged for delayed returns.
+
+--- Page 2 ---
+3. E-RESOURCES & SUBSCRIPTION ACCESS:
+- IEEE Xplore Digital Library: Access to IEEE Transactions, Conferences, and Standards on college IP range.
+- DELNET (Developing Library Network): Inter-library loan facility and union catalogue access across 7000+ Indian libraries.
+- NPTEL / SWAYAM Local Chapter: 50 dedicated multimedia PCs with video lectures on engineering, management, and basic sciences.
+- Anna University Consortium E-Journals: Elsevier ScienceDirect, Springer Link, and McGraw Hill AccessEngineering."""
+    },
+    {
+        "title": "AEC Student Discipline, Campus Ethics & Anti-Ragging Committee Regulations",
+        "filename": "aec_antiragging_discipline_code.txt",
+        "file_type": "text/plain",
+        "department": "Administration & HR",
+        "doc_type": "regulation",
+        "year_regulation": "2026-2027",
+        "access_level": "all",
+        "effective_date": "2026-08-01",
+        "urgency": "urgent",
+        "raw_text": """--- Page 1 ---
+ANNAPOORANA ENGINEERING COLLEGE (AEC), SALEM
+STUDENT CODE OF CONDUCT, ANTI-RAGGING CELL REGULATIONS & DISCIPLINARY BY-LAWS
+
+1. ZERO TOLERANCE POLICY AGAINST RAGGING:
+Ragging in any form inside or outside the college campus, in college buses, or in residential hostels is strictly prohibited by law under the Tamil Nadu Prohibition of Ragging Act, 1997 and UGC Regulations on Curbing the Menace of Ragging in Higher Educational Institutions.
+
+2. PENALTIES FOR RAGGING:
+Any student found guilty of ragging, abetting ragging, or participating in ragging will face:
+- Immediate suspension from attending classes and academic privileges.
+- Withholding/withdrawing scholarship, fee concessions, and other benefits.
+- Debarring from appearing in Internal Assessment and Anna University examinations.
+- Expulsion from the hostel and cancellation of admission.
+- Lodging of First Information Report (FIR) with the local police station (Sankari / Salem Police).
+
+--- Page 2 ---
+3. ANTI-RAGGING COMMITTEE & 24/7 HELPLINE DIRECTORY:
+- Principal & Chairman: Dr. A. Anbuchezian (+91 9442000648).
+- Anti-Ragging Nodal Officer: Vice Principal / Senior Professor (+91 9786911333).
+- National Anti-Ragging 24x7 Toll-Free Helpline: 1800-180-5522.
+- Anti-Ragging Squad Email: antiragging@aecsalem.edu.in.
+- Confidential Drop Boxes: Installed at Main Reception, Library, Boys Hostel Entrance, and Girls Hostel Lounge."""
+    },
+    {
+        "title": "AEC Student Clubs, Muthamizh Mandram & Sports Council Activities 2026-2027",
+        "filename": "aec_student_clubs_activities.txt",
+        "file_type": "text/plain",
+        "department": "Campus Life & Extracurriculars",
+        "doc_type": "notice",
+        "year_regulation": "2026-2027",
+        "access_level": "all",
+        "effective_date": "2026-08-15",
+        "urgency": "normal",
+        "raw_text": """--- Page 1 ---
+ANNAPOORANA ENGINEERING COLLEGE (AEC), SALEM
+CO-CURRICULAR & EXTRA-CURRICULAR CLUBS COUNCIL (ACADEMIC YEAR 2026-2027)
+
+1. ACTIVE CAMPUS CLUBS & ENROLMENT GUIDELINES:
+All 1st, 2nd, and 3rd year students are required to join at least one technical and one non-technical club for personality development:
+- Coders Club: Weekly competitive programming contests on LeetCode, HackerRank, and CodeChef; hackathons and open-source contribution drives.
+- Muthamizh Mandram (முத்தமிழ் மன்றம்): Tamil oratory, poetry competitions, Pattimandram, Pongal cultural celebrations, and heritage preservation.
+- Fine Arts & Music Club: Classical dance, western music band, drama, photography, and short film production.
+- Science & Innovation Club: Project expo, robotics competitions, CAD design contests, and patent filing guidance.
+- Trekking & Environmental Club: Nature camps, tree plantation drives, plastic-free campus initiatives, and Yercaud hill trekking expeditions.
+- Radio Jockey (RJ) Club & Language Lounge: English communication enhancement, public speaking workshops, campus podcasting, and toastmasters sessions.
+
+--- Page 2 ---
+2. SPORTS & PHYSICAL EDUCATION COUNCIL:
+- Outdoor Sports Grounds: 400m Athletic Track, Cricket Ground with turf nets, Football Field, Volleyball & Basketball Courts with floodlights.
+- Indoor Sports Complex: Badminton wooden courts, Table Tennis arena, Chess lounge, and modern Multi-Gymnasium.
+- Anna University Zonal Tournaments: AEC students participating in Anna University Zone-8 sports tournaments receive Special On-Duty (OD), sports tracksuits, and travel allowance."""
+    }
     ]
 
     for doc in sample_docs:
