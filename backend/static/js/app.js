@@ -850,14 +850,16 @@ function App({ initialRole, authData = {}, onLogout }) {
             suggested: userRole === 'student' ? [
               "How do I apply for 2026 Admissions on the College Admission Portal?",
               "What are the academic departments and engineering courses on the College Website?",
-              "Where can I pay college tuition fees online via the College Website Portal?",
-              "What is the minimum attendance requirement and condonation fee under R-2021?",
-              "What are the college bus routes and hostel curfew gate timings?"
+              "What is the minimum attendance requirement (75%) and condonation fee under Anna Univ R-2021?",
+              "What is the 5th semester class timetable for CSE & AI&DS?",
+              "Where can I pay college tuition fees online via SBI Collect / HDFC?",
+              "What are the 26 college bus routes and residential hostel curfew gate timings?"
             ] : [
-              "How many Casual Leaves (CL) and Anna University Zonal OD days are credited per year?",
-              "What is the cash incentive for publishing in Scopus / SCI Q1 journals?",
+              "How many Casual Leaves (CL), RH, and Anna University Zonal OD days are permitted per year?",
+              "What is the cash incentive for publishing in Scopus / SCI Q1 indexed journals?",
               "What is the morning biometric punching grace timing for AEC faculty?",
-              "What is the procedure for Anna University external examiner duty sanction?"
+              "How many library books can faculty borrow and what is the DELNET login procedure?",
+              "What are the Anna University Zone-8 central evaluation duties and guidelines?"
             ]
           }
         ]);
@@ -1674,19 +1676,30 @@ function App({ initialRole, authData = {}, onLogout }) {
                       </div>
                     )}
 
-                    {/* Suggested Queries */}
+                    {/* Suggested Questions Grid (Minimum 5-6 Interactive Cards) */}
                     {msg.suggested && msg.suggested.length > 0 && (
-                      <div className="pt-2">
-                        <p className="text-[11px] font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">Suggested Questions:</p>
-                        <div className="flex flex-col gap-1.5">
+                      <div className="pt-3 border-t border-slate-100 dark:border-slate-800">
+                        <div className="flex items-center justify-between mb-2">
+                          <p className="text-xs font-bold text-indigo-600 dark:text-indigo-400 flex items-center gap-1.5">
+                            <i data-lucide="sparkles" className="w-4 h-4 text-amber-500"></i>
+                            <span>Suggested Questions to Ask ({msg.suggested.length} Questions):</span>
+                          </p>
+                          <span className="text-[10px] text-slate-400">Click any question to ask instantly</span>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                           {msg.suggested.map((q, qIdx) => (
                             <button
                               key={qIdx}
                               onClick={() => handleSendMessage(q)}
-                              className="text-xs text-left bg-indigo-50/70 hover:bg-indigo-100 dark:bg-indigo-950/40 dark:hover:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 px-3 py-1.5 rounded-lg transition-colors flex items-center justify-between group"
+                              className="text-xs text-left p-3 rounded-xl bg-gradient-to-r from-indigo-50/80 to-purple-50/60 hover:from-indigo-100 hover:to-purple-100 dark:from-indigo-950/50 dark:to-purple-950/30 dark:hover:from-indigo-900/60 dark:hover:to-purple-900/40 text-indigo-900 dark:text-indigo-200 border border-indigo-200/80 dark:border-indigo-800/60 transition-all flex items-start justify-between gap-2 shadow-sm hover:shadow group hover:scale-[1.01]"
                             >
-                              <span>{q}</span>
-                              <i data-lucide="arrow-right" className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                              <div className="flex items-start gap-2">
+                                <span className="w-5 h-5 rounded-full bg-indigo-600 text-white flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5 shadow-sm">
+                                  {qIdx + 1}
+                                </span>
+                                <span className="font-semibold leading-snug">{q}</span>
+                              </div>
+                              <i data-lucide="arrow-up-right" className="w-4 h-4 text-indigo-500 shrink-0 opacity-70 group-hover:opacity-100 transition-opacity"></i>
                             </button>
                           ))}
                         </div>
@@ -1803,9 +1816,10 @@ function App({ initialRole, authData = {}, onLogout }) {
                     type="text"
                     value={inputQuery}
                     onFocus={() => {
-                      if (inputQuery.trim().length >= 2 && suggestedList.length > 0) {
-                        setShowSuggestDropdown(true);
+                      if (suggestedList.length === 0) {
+                        setSuggestedList(CAMPUS_SUGGESTIONS.slice(0, 6));
                       }
+                      setShowSuggestDropdown(true);
                     }}
                     onKeyDown={(e) => {
                       if (showSuggestDropdown && suggestedList.length > 0) {
