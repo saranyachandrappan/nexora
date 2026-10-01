@@ -632,10 +632,14 @@ function hexToRgb(hex) {
 //  ROOT APP SHELL (auth gate)
 // ============================================================
 function RootApp() {
-  const [authed, setAuthed] = useState(() => !!sessionStorage.getItem('aec_auth'));
   const [authData, setAuthData] = useState(() => {
-    try { return JSON.parse(sessionStorage.getItem('aec_auth') || '{}'); }
-    catch { return { role: 'student', username: 'student', label: 'Student' }; }
+    try {
+      const stored = sessionStorage.getItem('aec_auth');
+      if (stored) return JSON.parse(stored);
+    } catch (e) {}
+    const defaultAuth = { role: 'student', username: 'student', label: 'Student' };
+    sessionStorage.setItem('aec_auth', JSON.stringify(defaultAuth));
+    return defaultAuth;
   });
 
   const handleLogin = (userRole) => {
@@ -645,7 +649,6 @@ function RootApp() {
     } catch {
       setAuthData({ role: userRole, label: userRole });
     }
-    setAuthed(true);
   };
 
   const handleLogout = () => {
@@ -653,10 +656,6 @@ function RootApp() {
     window.location.href = '/login';
   };
 
-  if (!authed) {
-    window.location.href = '/login';
-    return null;
-  }
   return <App initialRole={authData.role || 'student'} authData={authData} onLogout={handleLogout} />;
 }
 

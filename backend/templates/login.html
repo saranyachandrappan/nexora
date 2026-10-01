@@ -232,14 +232,22 @@
               </a>
 
               {/* DASHBOARD OPTION IN TASK BAR */}
-              <a href="/dashboard" id="taskbar-dashboard-btn" style={{
+              <a href="/dashboard" id="taskbar-dashboard-btn" onClick={(e) => {
+                e.preventDefault();
+                sessionStorage.setItem('aec_auth', JSON.stringify({
+                  role: activeRole,
+                  username: selectedCred ? selectedCred.username : 'student',
+                  label: selectedCred ? selectedCred.label : 'Student'
+                }));
+                window.location.href = '/dashboard';
+              }} style={{
                 textDecoration:'none', color:'white',
                 background:'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
                 border:'none', borderRadius:11, padding:'8px 20px',
                 fontSize:13, fontWeight:700, display:'flex', alignItems:'center', gap:8,
-                boxShadow:'0 4px 18px rgba(99,102,241,0.35)', transition:'all 0.25s'
+                boxShadow:'0 4px 18px rgba(99,102,241,0.35)', transition:'all 0.25s', cursor:'pointer'
               }}>
-                <span>📊 Dashboard</span>
+                <span>📊 AEC Assist Dashboard</span>
                 <span>→</span>
               </a>
             </div>
