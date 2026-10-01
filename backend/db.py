@@ -658,6 +658,567 @@ All 1st, 2nd, and 3rd year students are required to join at least one technical 
 - Indoor Sports Complex: Badminton wooden courts, Table Tennis arena, Chess lounge, and modern Multi-Gymnasium.
 - Anna University Zonal Tournaments: AEC students participating in Anna University Zone-8 sports tournaments receive Special On-Duty (OD), sports tracksuits, and travel allowance."""
     }
+,
+# ==========================================
+    # 1. NOTICES (notices category)
+    # ==========================================
+    {
+        "title": "AEC Anti-Ragging Committee & 24x7 Emergency Squad Notice (AEC/NOT/2026/011)",
+        "filename": "aec_antiragging_squad_notice.txt",
+        "file_type": "text/plain",
+        "department": "Administration & HR",
+        "doc_type": "notice",
+        "year_regulation": "2026-2027",
+        "access_level": "all",
+        "effective_date": "2026-08-01",
+        "urgency": "urgent",
+        "raw_text": """--- Page 1 ---
+ANNAPOORANA ENGINEERING COLLEGE (AEC), SALEM
+OFFICIAL CAMPUS NOTICE: ANTI-RAGGING SQUAD & GRIEVANCE REDRESSAL MECHANISM
+
+1. STATUTORY COMPLIANCE & ZERO TOLERANCE:
+In compliance with Supreme Court of India, UGC, and AICTE regulations, Annapoorana Engineering College enforces strict zero tolerance towards ragging in any form across campus buildings, workshops, sports grounds, residential hostels, and college transport buses.
+
+2. 24x7 ANTI-RAGGING SQUAD & EMERGENCY HELPLINES:
+- Principal & Committee Head: Dr. A. Rajagopal - 9442000648
+- Dean (Student Affairs): Dr. S. K. Murugan - 9786911333
+- Anti-Ragging Nodal Officer: Prof. R. Balaji - 9842154820
+- Boys Hostel Resident Warden: Mr. K. Gunasekaran - 9600854120
+- Girls Hostel Resident Warden: Mrs. M. Shenbagam - 9443587210
+- National Anti-Ragging Helpline (Toll Free): 1800-180-5522 (helpline@antiragging.in)
+- Salem Rural Police Helpline / Local Station: 0427-2480222
+
+--- Page 2 ---
+3. SQUAD SURVEILLANCE & PATROLLING ZONES:
+- Zone A: Campus Main Entrance, Canteen, Student Parking & Dr. A.P.J. Abdul Kalam Block.
+- Zone B: Mechanical Engineering Workshops, CAD/CAM Labs & Idea Lab corridor.
+- Zone C: Boys & Girls Residential Hostel Blocks, Mess Halls & Recreation Grounds.
+- Zone D: College Bus Bay and Sankari - Salem NH-544 Highway Junction pickup point.
+
+4. DISCIPLINARY SANCTIONS:
+Any student found guilty of ragging, harassment, or cyber-bullying shall face immediate suspension from classes, cancellation of hostel admission, rustication from Anna University, and mandatory lodging of an FIR with local police authorities."""
+    },
+    {
+        "title": "AEC Central Library: Book Bank Scheme, DELNET E-Journals & IEEE Digital Access Notice",
+        "filename": "aec_library_book_bank_notice.txt",
+        "file_type": "text/plain",
+        "department": "Library Services",
+        "doc_type": "notice",
+        "year_regulation": "2026-2027",
+        "access_level": "all",
+        "effective_date": "2026-08-12",
+        "urgency": "normal",
+        "raw_text": """--- Page 1 ---
+ANNAPOORANA ENGINEERING COLLEGE, SALEM
+DR. A.P.J. ABDUL KALAM CENTRAL KNOWLEDGE RESOURCE CENTRE & DIGITAL LIBRARY
+NOTICE #AEC/LIB/2026/04: BOOK BANK SCHEME ALLOCATIONS & E-RESOURCES ACCESS
+
+1. BOOK BANK FACILITY FOR SC/ST & MERITORIOUS STUDENTS:
+- Eligible students from SC/ST communities and merit scholarship awardees can borrow up to 6 core engineering textbooks for the complete semester duration without daily circulation limits.
+- Book distribution dates: August 18 to August 25, 2026 at the Ground Floor Central Library Counter.
+- Required documents: College ID card, current semester fee receipt, and community certificate copy.
+
+--- Page 2 ---
+2. DIGITAL LIBRARY & ONLINE RESEARCH REPOSITORY ACCESS:
+- IEEE Xplore Digital Library: Access full-text IEEE transactions, journals, and conference proceedings on intranet IP (http://ieeexplore.ieee.org).
+- DELNET Consortium: Over 3.5 crore bibliographic records and inter-library loan facility (User ID: tnaec / Pass: delnet2026).
+- NPTEL & SWAYAM Video Repository: 50 multimedia workstations accessible Monday to Saturday 08:30 AM to 06:00 PM with 1 Gbps high-speed leased line.
+- Anna University E-Question Bank: Previous 10 years solved university examination question papers accessible on http://library.aecsalem.edu.in."""
+    },
+    {
+        "title": "AEC National Level Technical Symposium 'INNOFEST 2026' Paper Submission & Events Notice",
+        "filename": "aec_innofest_2026_notice.txt",
+        "file_type": "text/plain",
+        "department": "Academic Affairs",
+        "doc_type": "notice",
+        "year_regulation": "2026-2027",
+        "access_level": "all",
+        "effective_date": "2026-09-01",
+        "urgency": "normal",
+        "raw_text": """--- Page 1 ---
+ANNAPOORANA ENGINEERING COLLEGE (AEC), SALEM
+ALL DEPARTMENTS JOINTLY PRESENT 'INNOFEST 2026' - NATIONAL TECHNICAL SYMPOSIUM
+
+1. CALL FOR RESEARCH PAPERS & THEMATIC TRACKS:
+- Track 1 (CSE, AI&DS, IT): Generative AI, Large Language Models, Cloud Security, Blockchain & IoT.
+- Track 2 (ECE, EEE): VLSI Chip Design, EV Powertrain & BMS, 6G Wireless, Smart Grid Robotics.
+- Track 3 (MECH, AUTO, CIVIL): Additive Manufacturing, Smart Materials, Sustainable Green Infrastructure, Autonomous Vehicles.
+- Track 4 (BME, Science): Bio-Signals, AI in Healthcare, Nanotechnology, Computational Mathematics.
+
+--- Page 2 ---
+2. IMPORTANT DATES & REGISTRATION DETAILS:
+- Full Paper Submission Deadline: September 20, 2026 via symposium@aecsalem.edu.in.
+- Notification of Acceptance: September 25, 2026.
+- Symposium Date: October 08, 2026.
+- Cash Prizes: 1st Prize: INR 10,000/- | 2nd Prize: INR 5,000/- | 3rd Prize: INR 2,500/- with IEEE student chapter merit certificates.
+- Spot Technical Events: Code-A-Thon, Circuit Debugging, Robo-Wars, Paper Wings, CAD Modelling, Tech Quiz."""
+    },
+    {
+        "title": "AEC NSS, YRC & Rotaract Club Mega Blood Donation & Tree Plantation Camp",
+        "filename": "aec_nss_blood_donation_camp.txt",
+        "file_type": "text/plain",
+        "department": "Administration & HR",
+        "doc_type": "notice",
+        "year_regulation": "2026-2027",
+        "access_level": "all",
+        "effective_date": "2026-09-05",
+        "urgency": "normal",
+        "raw_text": """--- Page 1 ---
+ANNAPOORANA ENGINEERING COLLEGE, SALEM
+NATIONAL SERVICE SCHEME (NSS UNIT I & II) & YOUTH RED CROSS (YRC)
+NOTICE: MEGA VOLUNTARY BLOOD DONATION & GREEN CAMPUS PLANTATION DRIVE
+
+1. CAMP EVENT OVERVIEW:
+In association with Government Mohan Kumaramangalam Medical College & Hospital Blood Bank, Salem, a Mega Voluntary Blood Donation Camp is organized at AEC Auditorium.
+- Date & Time: Friday, September 18, 2026 from 09:30 AM to 03:30 PM.
+- Venue: Dr. A.P.J. Abdul Kalam Multipurpose Auditorium.
+- Donors will be awarded Government Blood Donor Certificate, Blood Group Identification Card, and nutritious refreshments.
+
+--- Page 2 ---
+2. 'GREEN AEC' 500-SAPLING TREE PLANTATION:
+- Organized by Rotaract Club of AEC and Eco Club around the campus sports complex and hostel perimeter.
+- All student volunteers will earn 10 NSS activity credit hours recognized under Anna University student co-curricular regulations."""
+    },
+
+    # ==========================================
+    # 2. TIMETABLES (timetables category)
+    # ==========================================
+    {
+        "title": "AEC Department of CSE: Odd Semester 2026-27 Class Time Table (II, III & IV Year B.E. CSE)",
+        "filename": "aec_cse_timetable_odd_2026_27.txt",
+        "file_type": "text/plain",
+        "department": "Computer Science & Engineering (CSE)",
+        "doc_type": "timetable",
+        "year_regulation": "2026-2027",
+        "access_level": "all",
+        "effective_date": "2026-08-16",
+        "urgency": "urgent",
+        "raw_text": """--- Page 1 ---
+ANNAPOORANA ENGINEERING COLLEGE, SALEM
+DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING (B.E. CSE - R2021 CBCS)
+CLASS TIME TABLE FOR ODD SEMESTER (ACADEMIC YEAR 2026-2027)
+
+DAILY CLASS SCHEDULE TIMINGS:
+- Period 1: 09:00 AM - 09:50 AM
+- Period 2: 09:50 AM - 10:40 AM
+- Morning Tea Break: 10:40 AM - 10:55 AM
+- Period 3: 10:55 AM - 11:45 AM
+- Period 4: 11:45 AM - 12:35 PM
+- Lunch Break: 12:35 PM - 01:25 PM
+- Period 5: 01:25 PM - 02:15 PM
+- Period 6: 02:15 PM - 03:05 PM
+- Afternoon Break: 03:05 PM - 03:15 PM
+- Period 7 (Lab / Mentoring / Value Added Course): 03:15 PM - 04:30 PM
+
+--- Page 2 ---
+III YEAR (5TH SEMESTER) SUBJECT & LAB ALLOTMENTS:
+- CS3591 Computer Networks: Prof. K. Ramesh (Mon P1, Wed P3, Fri P2)
+- CS3501 Compiler Design: Dr. M. Sangeetha (Tue P2, Thu P1, Sat P3)
+- CB3491 Cryptography and Cybersecurity: Prof. V. Anitha (Mon P4, Thu P3, Fri P5)
+- CS3551 Distributed Computing: Prof. P. Karthik (Tue P4, Wed P2, Thu P5)
+- CS3511 Networks Laboratory: Prof. K. Ramesh & Lab Team (Tuesday 01:25 PM - 04:30 PM, Lab-3)
+- CS3561 Web Technologies Laboratory: Prof. V. Anitha & Lab Team (Thursday 01:25 PM - 04:30 PM, Lab-2)
+- Professional Elective I: Cloud Architecture (Wed P5, Sat P1)
+- Mandatory Course: Naan Mudhalvan Cyber Threat Analysis (Saturday 01:25 PM - 04:30 PM)."""
+    },
+    {
+        "title": "AEC Department of AI & Data Science: Odd Semester 2026-27 Master Time Table (B.Tech AI&DS)",
+        "filename": "aec_aids_timetable_odd_2026_27.txt",
+        "file_type": "text/plain",
+        "department": "Artificial Intelligence & Data Science (AI&DS)",
+        "doc_type": "timetable",
+        "year_regulation": "2026-2027",
+        "access_level": "all",
+        "effective_date": "2026-08-16",
+        "urgency": "urgent",
+        "raw_text": """--- Page 1 ---
+ANNAPOORANA ENGINEERING COLLEGE, SALEM
+DEPARTMENT OF ARTIFICIAL INTELLIGENCE & DATA SCIENCE (B.TECH AI&DS)
+OFFICIAL MASTER TIME TABLE FOR ODD SEMESTER 2026-2027
+
+III YEAR (5TH SEMESTER) COURSE MATRIX:
+- AD3501 Deep Learning Architectures: Dr. S. K. Murugan (Monday P1, Wednesday P2, Friday P3)
+- AD3502 Natural Language Processing: Prof. G. Deepa (Tuesday P1, Thursday P2, Saturday P1)
+- AD3503 Computer Vision & Image Analytics: Dr. T. Srinivasan (Monday P3, Wednesday P4, Friday P1)
+- CW3591 Web Technologies & Microservices: Prof. N. Vignesh (Tuesday P3, Thursday P4, Saturday P2)
+- Open Elective I: Drone Technologies / Renewable Energy (Mon P5, Thu P5)
+
+--- Page 2 ---
+PRACTICAL LABORATORY & GPU CLUSTER SESSIONS:
+- AD3511 Deep Learning Laboratory: NVIDIA RTX 4090 GPU Idea Lab (Monday 01:25 PM - 04:30 PM)
+- AD3512 Natural Language Processing Lab: IBM Watson Cloud Center (Wednesday 01:25 PM - 04:30 PM)
+- AICTE Idea Lab Hands-on Prototyping: Friday 03:15 PM - 04:30 PM
+- Naan Mudhalvan Generative AI & Prompt Engineering: Saturday 01:25 PM - 04:30 PM
+- Class Advisor & Mentor: Prof. G. Deepa (Cabin #AD-204, Second Floor)."""
+    },
+    {
+        "title": "AEC Department of ECE & EEE: Odd Semester 2026-27 Lab & Theory Schedule",
+        "filename": "aec_ece_eee_timetable_odd_2026_27.txt",
+        "file_type": "text/plain",
+        "department": "Electronics & Communication (ECE)",
+        "doc_type": "timetable",
+        "year_regulation": "2026-2027",
+        "access_level": "all",
+        "effective_date": "2026-08-16",
+        "urgency": "normal",
+        "raw_text": """--- Page 1 ---
+ANNAPOORANA ENGINEERING COLLEGE, SALEM
+DEPARTMENTS OF ELECTRONICS & COMMUNICATION (ECE) AND ELECTRICAL & ELECTRONICS (EEE)
+SEMESTER 5 & 7 TIME TABLE FOR THEORY & ADVANCED PRACTICALS
+
+ECE 5TH SEMESTER CORE COURSES:
+- EC3501 Wireless Communication & 5G Systems: Dr. K. Venkataraman (Mon P2, Wed P1, Fri P4)
+- EC3551 VLSI Design Architecture: Prof. S. Jayapriya (Tue P2, Thu P1, Sat P3)
+- EC3552 Transmission Lines and RF Systems: Prof. M. Prakash (Mon P3, Wed P4, Thu P3)
+- EC3511 VLSI & System Design Laboratory: Cadence Design Suite Lab (Wednesday 01:25 PM - 04:30 PM)
+- EC3512 Wireless & RF Systems Laboratory: Friday 01:25 PM - 04:30 PM
+
+--- Page 2 ---
+EEE 5TH SEMESTER CORE COURSES:
+- EE3501 Power System Analysis: Dr. P. Shanmugam (Mon P1, Tue P3, Thu P2)
+- EE3502 Control Systems Engineering: Prof. D. Anand (Wed P2, Fri P1, Sat P4)
+- EE3503 Microprocessors & Microcontrollers: Prof. R. Malathi (Tue P1, Thu P4, Fri P3)
+- EE3511 Power Electronics & Drives Lab: Tuesday 01:25 PM - 04:30 PM
+- EE3512 Microcontroller Embedded Lab: Thursday 01:25 PM - 04:30 PM."""
+    },
+    {
+        "title": "AEC Department of Mechanical & Automobile Engineering: Workshop & CAD/CAM Lab Schedule",
+        "filename": "aec_mech_auto_timetable_odd_2026_27.txt",
+        "file_type": "text/plain",
+        "department": "Mechanical Engineering (MECH)",
+        "doc_type": "timetable",
+        "year_regulation": "2026-2027",
+        "access_level": "all",
+        "effective_date": "2026-08-16",
+        "urgency": "normal",
+        "raw_text": """--- Page 1 ---
+ANNAPOORANA ENGINEERING COLLEGE, SALEM
+DEPARTMENTS OF MECHANICAL AND AUTOMOBILE ENGINEERING
+TIME TABLE FOR ODD SEMESTER: LAB SLOTS & INDUSTRIAL CAD/CAM PRACTICE
+
+MECHANICAL ENGINEERING LAB PRACTICAL SESSIONS:
+- ME3511 Thermal Engineering Laboratory-II: IC Engines, Steam Boiler & Heat Transfer Lab (Monday 01:25 PM - 04:30 PM)
+- ME3512 CAD/CAM and Finite Element Analysis Studio: SolidWorks, ANSYS & CATIA (Wednesday 01:25 PM - 04:30 PM)
+- ME3513 Dynamics & Vibrations Lab: Friday 01:25 PM - 04:30 PM
+- CNC Machining & Additive Manufacturing Workshop: Tuesday 03:15 PM - 04:30 PM
+
+--- Page 2 ---
+AUTOMOBILE ENGINEERING SPECIALIZED SESSIONS:
+- AT3501 Automotive Transmission & Chassis Design: Dr. N. Selvam (Tue P1, Thu P2, Sat P3)
+- AT3502 Electric and Hybrid Vehicle Technologies: Prof. K. Saravanan (Mon P3, Wed P2, Fri P1)
+- AT3511 Automotive Engine Testing & Two/Four Wheeler Dynamometer Lab: Thursday 01:25 PM - 04:30 PM."""
+    },
+    {
+        "title": "AEC Department of Civil & Biomedical Engineering: Laboratory & Clinical Instrumentation Schedule",
+        "filename": "aec_civil_bme_timetable_odd_2026_27.txt",
+        "file_type": "text/plain",
+        "department": "Civil Engineering (CIVIL)",
+        "doc_type": "timetable",
+        "year_regulation": "2026-2027",
+        "access_level": "all",
+        "effective_date": "2026-08-16",
+        "urgency": "normal",
+        "raw_text": """--- Page 1 ---
+ANNAPOORANA ENGINEERING COLLEGE, SALEM
+DEPARTMENTS OF CIVIL ENGINEERING & BIOMEDICAL ENGINEERING
+PRACTICAL LABORATORY & SURVEY TRAINING TIME TABLE
+
+CIVIL ENGINEERING PRACTICAL SESSIONS:
+- CE3511 Structural Analysis & Concrete Technology Lab: Monday 01:25 PM - 04:30 PM
+- CE3512 Total Station, GPS & GIS Survey Camp: Wednesday 01:25 PM - 04:30 PM (Field Grounds)
+- CE3513 Environmental Engineering & Water Quality Testing Lab: Friday 01:25 PM - 04:30 PM
+
+--- Page 2 ---
+BIOMEDICAL ENGINEERING CLINICAL LAB SESSIONS:
+- BM3501 Diagnostic & Therapeutic Equipment: Dr. R. Kavitha (Mon P2, Wed P3, Thu P1)
+- BM3502 Bio-Signal Processing: Prof. S. Priyadharshini (Tue P3, Thu P4, Fri P2)
+- BM3511 Biomedical Instrumentation & ECG/EEG Simulation Lab: Tuesday 01:25 PM - 04:30 PM
+- BM3512 Pathology & Microbiology Lab: Thursday 01:25 PM - 04:30 PM."""
+    },
+
+    # ==========================================
+    # 3. CIRCULARS (circulars category)
+    # ==========================================
+    {
+        "title": "Circular #AEC/TPO/2026/034: Centre for Corporate Relations - Phase-1 Campus Placement Drives & MNC Eligibility Guidelines",
+        "filename": "aec_placement_drive_circular_2026.txt",
+        "file_type": "text/plain",
+        "department": "Training & Placement Cell",
+        "doc_type": "circular",
+        "year_regulation": "2026-2027",
+        "access_level": "student",
+        "effective_date": "2026-08-28",
+        "urgency": "urgent",
+        "raw_text": """--- Page 1 ---
+ANNAPOORANA ENGINEERING COLLEGE, SALEM
+CENTRE FOR CORPORATE RELATIONS & TRAINING & PLACEMENT CELL
+CIRCULAR #AEC/TPO/2026/034: PHASE-1 ON-CAMPUS & VIRTUAL RECRUITMENT DRIVES
+
+1. UPCOMING RECRUITMENT DRIVES (BATCH 2023-2027 / FINAL YEAR STUDENTS):
+- Tata Consultancy Services (TCS Ninja & Digital): Online Assessment on Sept 26, 2026 (Salary Package: 3.6 LPA - 7.2 LPA).
+- Zoho Corporation: Software Developer & Quality Analyst On-Campus Drive on Oct 04, 2026 (Salary: 6.0 LPA - 8.5 LPA).
+- Cognizant (CTS GenC & GenC Next): Assessment on Oct 14, 2026 (Salary: 4.0 LPA - 6.75 LPA).
+- Infosys (Specialist Programmer & Systems Engineer): Test Window Oct 21, 2026 (Salary: 3.8 LPA - 9.5 LPA).
+- Wipro, Capgemini, Hexaware, HCL Technologies, and TVS Motors: October 28 to November 15, 2026.
+
+--- Page 2 ---
+2. MANDATORY ELIGIBILITY & INTERVIEW PROTOCOLS:
+- Minimum CGPA: 6.50 and above across completed semesters with zero standing arrears.
+- Dress Code: Formal blazer, neat business attire, and College ID Card are mandatory.
+- Resume & Credentials: 3 sets of updated resumes, passport photos, and original mark sheets.
+- Training: Mandatory Aptitude, Verbal Reasoning, and Mock Technical Interviews commence daily from 04:45 PM to 06:00 PM at Seminar Hall-1.
+- Placement Officer: Dr. M. Jayakumar (Email: placement@aecsalem.edu.in | Mobile: +91 9442000648)."""
+    },
+    {
+        "title": "Circular #AEC/NM/2026/015: Tamil Nadu Naan Mudhalvan Scheme Mandatory Upskilling Courses & Certification Schedule",
+        "filename": "aec_naan_mudhalvan_circular_2026.txt",
+        "file_type": "text/plain",
+        "department": "Academic Affairs",
+        "doc_type": "circular",
+        "year_regulation": "2026-2027",
+        "access_level": "all",
+        "effective_date": "2026-08-20",
+        "urgency": "urgent",
+        "raw_text": """--- Page 1 ---
+ANNAPOORANA ENGINEERING COLLEGE (AEC), SALEM
+OFFICE OF ACADEMIC AFFAIRS & ANNA UNIVERSITY AFFILIATION COORDINATION
+CIRCULAR #AEC/NM/2026/015: TAMIL NADU NAAN MUDHALVAN MANDATORY COURSES
+
+1. PROGRAMME OBJECTIVES & UNIVERSITY MANDATE:
+Under the Tamil Nadu Government Naan Mudhalvan Skilling Initiative, all II, III, and IV Year B.E. / B.Tech students are required to complete mandatory semester technical courses in cutting-edge industry domains.
+
+2. DEPARTMENT COURSE ENROLLMENTS:
+- B.E. CSE & B.Tech IT: Cloud Architecture with AWS & Cyber Security Defense (Trainer: ICT Academy).
+- B.Tech AI & DS: Generative AI, Large Language Models & Prompt Engineering (Trainer: IBM / NASSCOM).
+- B.E. ECE: Embedded Systems with ARM Cortex & IoT Protocols (Trainer: Texas Instruments).
+- B.E. EEE: Electric Vehicle Powertrain, BMS & Smart Grid Automation (Trainer: L&T EduTech).
+- B.E. Mech & Auto: Industrial Robotics & Additive 3D Manufacturing (Trainer: Siemens Centre).
+- B.E. Civil: Building Information Modelling (BIM) & GIS Analytics (Trainer: Bentley Systems).
+
+--- Page 2 ---
+3. ASSESSMENT & FINAL CERTIFICATION:
+- Assessment Method: 50% Continuous Practical Lab Projects + 50% State-Level Online MCQ Assessment.
+- Completion Certificate: Awarded by Government of Tamil Nadu & TNSDC; 2 mandatory university academic credits will be added to the Anna University Grade Sheet."""
+    },
+    {
+        "title": "Circular #AEC/EXAM/2026/072: Anna University End Semester Examination Fee Remittance & Hall Ticket Instructions",
+        "filename": "aec_anna_univ_exam_fee_circular.txt",
+        "file_type": "text/plain",
+        "department": "Examination Cell",
+        "doc_type": "circular",
+        "year_regulation": "2026-2027",
+        "access_level": "all",
+        "effective_date": "2026-09-02",
+        "urgency": "urgent",
+        "raw_text": """--- Page 1 ---
+ANNAPOORANA ENGINEERING COLLEGE, SALEM
+OFFICE OF THE CONTROLLER OF EXAMINATIONS / ANNA UNIVERSITY EXAMINATION CELL
+CIRCULAR #AEC/EXAM/2026/072: NOVEMBER / DECEMBER 2026 END SEMESTER EXAMINATIONS
+
+1. EXAMINATION FEE REMITTANCE SCHEDULE:
+- Normal Fee Submission Period: September 15 to September 30, 2026 without fine.
+- With Fine of INR 500/-: October 01 to October 08, 2026.
+- Fee Structure:
+  * Theory Paper (UG): INR 150/- per subject.
+  * Practical Laboratory Paper: INR 450/- per subject.
+  * Project Phase-I / Phase-II Evaluation: INR 600/-.
+  * Statement of Marks & Grade Card: INR 150/-.
+
+--- Page 2 ---
+2. HALL TICKET GENERATION & DOWNLOAD:
+- Hall Tickets can be downloaded from Anna University COE Portal (https://coe1.annauniv.edu) using Student Register Number and Date of Birth from November 20, 2026.
+- Mandatory Requirement: Minimum 75% attendance across all subjects is mandatory for Hall Ticket issuance.
+- Chief Superintendent: Dr. A. Rajagopal, Principal (Exam Cell: Block-A, Room #102)."""
+    },
+    {
+        "title": "Circular #AEC/SCH/2026/019: Government First Graduate, Post-Matric & BC/MBC/SC/ST Scholarship Renewal",
+        "filename": "aec_scholarship_circular_2026.txt",
+        "file_type": "text/plain",
+        "department": "Finance & Accounts",
+        "doc_type": "circular",
+        "year_regulation": "2026-2027",
+        "access_level": "all",
+        "effective_date": "2026-08-14",
+        "urgency": "normal",
+        "raw_text": """--- Page 1 ---
+ANNAPOORANA ENGINEERING COLLEGE (AEC), SALEM
+FINANCE & ACCOUNTS SECTION & STUDENT WELFARE SCHOLARSHIP CELL
+CIRCULAR #AEC/SCH/2026/019: STATE & CENTRAL GOVERNMENT SCHOLARSHIPS 2026-2027
+
+1. ELIGIBLE SCHOLARSHIP SCHEMES:
+- Tamil Nadu Government First Graduate Tuition Fee Waiver (INR 25,000/- per annum).
+- Post-Matric Scholarship for SC/ST/SCC Students (Full Tuition Fee + Special Allowance).
+- BC / MBC / DNC Welfare Scholarship (Annual Family Income below INR 2.50 Lakhs).
+- Prime Minister's Special Scholarship Scheme (PMSSS) & Central Sector Merit Scholarship.
+- AICTE Pragati Scholarship for Girl Students (INR 50,000/- per year).
+
+--- Page 2 ---
+2. APPLICATION SUBMISSION DEADLINE & VERIFICATION:
+- Last Date for Online Renewal on TN e-District Portal: September 25, 2026.
+- Hardcopy submission at College Accounts Desk: Before September 30, 2026.
+- Required Enclosures: Income Certificate (2026 issue), Community Certificate, 10th & 12th Marksheets, Bank Passbook copy (Aadhaar linked), Previous Year Anna University Marksheets."""
+    },
+
+    # ==========================================
+    # 4. DEPARTMENT RECORDS (department records)
+    # ==========================================
+    {
+        "title": "Department of Computer Science & Engineering (CSE): Curriculum, Labs, Faculty Directory & Hackathon Achievements",
+        "filename": "aec_cse_department_profile.txt",
+        "file_type": "text/plain",
+        "department": "Computer Science & Engineering (CSE)",
+        "doc_type": "regulation",
+        "year_regulation": "R2021",
+        "access_level": "all",
+        "effective_date": "2026-07-01",
+        "urgency": "normal",
+        "raw_text": """--- Page 1 ---
+ANNAPOORANA ENGINEERING COLLEGE (AEC), SALEM
+DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING (ESTABLISHED 2010 - NBA ACCREDITED)
+DEPARTMENTAL PROFILE, ACADEMIC ECOSYSTEM & FACULTY DIRECTORY
+
+1. VISION & MISSION:
+- Vision: To empower students to become proficient computer engineers, researchers, and entrepreneurial leaders with high ethical values and global software competency.
+- Mission: To provide state-of-the-art laboratory infrastructure, foster industry-aligned software skills, and cultivate problem-solving competencies for national challenges.
+
+--- Page 2 ---
+2. SPECIALIZED LABORATORY FACILITIES:
+- High Performance Cloud & AI Computing Lab: 60 Dell Precision workstations with Intel Xeon processors and high-speed network backbone.
+- Open Source & Linux Lab: Dual boot Ubuntu/Fedora environments with Docker, Kubernetes, and Git Version Control servers.
+- Mobile App & Full-Stack Development Studio: Flutter, React, Node.js, MongoDB stack.
+- Smart India Hackathon (SIH) Innovation Center: 24x7 development zone with 1 Gbps internet.
+
+--- Page 3 ---
+3. FACULTY LEADERSHIP:
+- Head of Department: Dr. M. Sangeetha, M.E., Ph.D. (Specialization: Distributed Systems & Cryptography).
+- Associate Professor: Dr. K. Ramesh, M.E., Ph.D. (Specialization: Cloud Security & Wireless Networks).
+- Assistant Professor (Senior): Prof. V. Anitha, M.E. (Specialization: Deep Learning & NLP).
+- Assistant Professor: Prof. P. Karthik, M.Tech. (Specialization: Big Data Analytics).
+- Department Office: Block-B, 2nd Floor (Email: hodcse@aecsalem.edu.in | Extn: 201)."""
+    },
+    {
+        "title": "Department of Electronics & Communication Engineering (ECE): Curriculum, IoT Lab & Research Centers",
+        "filename": "aec_ece_department_profile.txt",
+        "file_type": "text/plain",
+        "department": "Electronics & Communication (ECE)",
+        "doc_type": "regulation",
+        "year_regulation": "R2021",
+        "access_level": "all",
+        "effective_date": "2026-07-01",
+        "urgency": "normal",
+        "raw_text": """--- Page 1 ---
+ANNAPOORANA ENGINEERING COLLEGE, SALEM
+DEPARTMENT OF ELECTRONICS AND COMMUNICATION ENGINEERING (B.E. ECE & M.E. VLSI)
+
+1. LABORATORY INFRASTRUCTURE:
+- VLSI & Microelectronics Design Center: Licensed Cadence Virtuoso, Synopsys, Mentor Graphics, and Xilinx Vivado FPGA kits.
+- Optical & Microwave Engineering Lab: Anritsu Spectrum Analyzers, Optical Time Domain Reflectometer (OTDR), and Gunn Oscillator benches.
+- Texas Instruments Innovation IoT Lab: MSP430 LaunchPads, CC3200 SimpleLink Wi-Fi modules, and Zigbee sensor nodes.
+- PCB Prototyping & Soldering Station: Automated chemical etching and CNC PCB milling machine.
+
+--- Page 2 ---
+2. FACULTY & RESEARCH DOMAINS:
+- Head of Department: Dr. K. Venkataraman, M.E., Ph.D. (Specialization: RF & Microwave Antennas).
+- Associate Professor: Prof. S. Jayapriya, M.E., (Ph.D.) (Specialization: Low Power VLSI Design).
+- Department Contact: Block-C, 1st Floor (Email: hodece@aecsalem.edu.in)."""
+    },
+    {
+        "title": "Department of Electrical & Electronics Engineering (EEE): Power Systems Lab & EV Innovation Center",
+        "filename": "aec_eee_department_profile.txt",
+        "file_type": "text/plain",
+        "department": "Electrical & Electronics (EEE)",
+        "doc_type": "regulation",
+        "year_regulation": "R2021",
+        "access_level": "all",
+        "effective_date": "2026-07-01",
+        "urgency": "normal",
+        "raw_text": """--- Page 1 ---
+ANNAPOORANA ENGINEERING COLLEGE, SALEM
+DEPARTMENT OF ELECTRICAL AND ELECTRONICS ENGINEERING (B.E. EEE & M.E. POWER ELECTRONICS)
+
+1. ADVANCED POWER SYSTEMS & EV INFRASTRUCTURE:
+- Power Electronics & Drives Lab: DSP-controlled Inverters, Cycloconverters, DC-DC Boost Converters, and BLDC motor test benches.
+- Electric Vehicle (EV) Charging & Battery Testing Center: 48V/72V Lithium-ion BMS test facility and regenerative braking simulators.
+- Solar Photovoltaic Roof-Top Research Lab: 50 kW on-grid grid-tied solar farm with SCADA remote monitoring.
+- High Voltage & Electrical Machines Lab: AC/DC Shunt, Series, Compound Motors, Alternators, and Transformer testing rigs.
+
+--- Page 2 ---
+2. FACULTY LEADERSHIP:
+- Head of Department: Dr. P. Shanmugam, M.E., Ph.D. (Specialization: Smart Grid Automation & Renewable Energy).
+- Department Contact: Block-C, Ground Floor (Email: hodeee@aecsalem.edu.in)."""
+    },
+    {
+        "title": "Department of Mechanical Engineering (MECH): Advanced Manufacturing, Robotics & CNC Center",
+        "filename": "aec_mech_department_profile.txt",
+        "file_type": "text/plain",
+        "department": "Mechanical Engineering (MECH)",
+        "doc_type": "regulation",
+        "year_regulation": "R2021",
+        "access_level": "all",
+        "effective_date": "2026-07-01",
+        "urgency": "normal",
+        "raw_text": """--- Page 1 ---
+ANNAPOORANA ENGINEERING COLLEGE, SALEM
+DEPARTMENT OF MECHANICAL ENGINEERING (NBA ACCREDITED)
+
+1. WORKSHOP & ADVANCED RESEARCH FACILITIES:
+- Central Workshop: Lathe Shop (30 Heavy-duty Lathes), Shaper & Planer Shop, Foundry & Smithy Shop, and Welding Section (TIG, MIG, Gas Welding).
+- CNC & Industrial Automation Center: 3-Axis CNC Milling Center, CNC Lathe with Fanuc 0i-TF Controller.
+- 3D Printing & Additive Manufacturing Studio: Industrial SLA/FDM dual-extrusion 3D Printers for student capstone prototypes.
+- Automotive & IC Engines Research Lab: Variable Compression Ratio (VCR) multi-fuel research engine with computerised data acquisition.
+
+--- Page 2 ---
+2. FACULTY LEADERSHIP:
+- Head of Department: Dr. N. Selvam, M.E., Ph.D. (Specialization: Advanced Composites & Thermal Engineering).
+- Department Contact: Workshop Complex, Block-D (Email: hodmech@aecsalem.edu.in)."""
+    },
+    {
+        "title": "Department of Civil Engineering: Structural & Environmental Engineering Laboratories",
+        "filename": "aec_civil_department_profile.txt",
+        "file_type": "text/plain",
+        "department": "Civil Engineering (CIVIL)",
+        "doc_type": "regulation",
+        "year_regulation": "R2021",
+        "access_level": "all",
+        "effective_date": "2026-07-01",
+        "urgency": "normal",
+        "raw_text": """--- Page 1 ---
+ANNAPOORANA ENGINEERING COLLEGE, SALEM
+DEPARTMENT OF CIVIL ENGINEERING (B.E. CIVIL & M.E. STRUCTURAL ENGINEERING)
+
+1. SPECIALIZED CIVIL LAB FACILITIES:
+- Strength of Materials & Concrete Testing Lab: 100-Tonne Universal Testing Machine (UTM), Compression Testing Machine, Compacting Factor apparatus.
+- Advanced Survey Lab: Sokkia & Leica Total Stations, Handheld DGPS, Electronic Theodolites.
+- Soil Mechanics & Geotechnical Lab: Direct Shear, Triaxial, Unconfined Compression, and Standard Penetration testing rigs.
+- Environmental & Water Quality Testing Lab: Spectrophotometer, BOD/COD incubators, and turbidity meters for public water quality testing.
+
+--- Page 2 ---
+2. CONSULTANCY WING:
+- Provides structural auditing, soil testing, and concrete mix design consultancy for state highway projects and private commercial builders across Salem district."""
+    },
+    {
+        "title": "Department of Biomedical Engineering (BME): Medical Electronics & Hospital Training Manual",
+        "filename": "aec_bme_department_profile.txt",
+        "file_type": "text/plain",
+        "department": "Biomedical Engineering (BME)",
+        "doc_type": "regulation",
+        "year_regulation": "R2021",
+        "access_level": "all",
+        "effective_date": "2026-07-01",
+        "urgency": "normal",
+        "raw_text": """--- Page 1 ---
+ANNAPOORANA ENGINEERING COLLEGE, SALEM
+DEPARTMENT OF BIOMEDICAL ENGINEERING (B.E. BIOMEDICAL ENGINEERING)
+
+1. HEALTHCARE TECHNOLOGY LABORATORIES:
+- Biomedical Instrumentation Lab: 12-lead ECG machines, Multiparameter Patient Monitors, Electromyography (EMG), Electroencephalography (EEG) simulators, and Pacemaker trainers.
+- Medical Optics & Laser Lab: Fiber optic endoscopy simulator, He-Ne laser units, and spectrophotometers.
+- Hospital Internship Tie-Ups: 30-day clinical training partnerships with Salem Manipal Hospital, Kauvery Hospital, and Government Mohan Kumaramangalam Super Specialty Hospital.
+
+--- Page 2 ---
+2. HEAD OF DEPARTMENT:
+- Head of Department: Dr. R. Kavitha, M.E., Ph.D. (Specialization: Medical Image Processing & Biosensors | Email: hodbme@aecsalem.edu.in)."""
+    }
     ]
 
     for doc in sample_docs:
