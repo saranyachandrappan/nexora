@@ -542,23 +542,33 @@ function hexToRgb(hex) {
 // ============================================================
 function RootApp() {
   const [authed, setAuthed] = useState(() => !!sessionStorage.getItem('aec_auth'));
-  const [role, setRole]     = useState(() => {
-    try { return JSON.parse(sessionStorage.getItem('aec_auth') || '{}').role || 'student'; }
-    catch { return 'student'; }
+  const [authData, setAuthData] = useState(() => {
+    try { return JSON.parse(sessionStorage.getItem('aec_auth') || '{}'); }
+    catch { return { role: 'student', username: 'student', label: 'Student' }; }
   });
 
   const handleLogin = (userRole) => {
-    setRole(userRole);
+    try {
+      const data = JSON.parse(sessionStorage.getItem('aec_auth') || '{}');
+      setAuthData(data);
+    } catch {
+      setAuthData({ role: userRole, label: userRole });
+    }
     setAuthed(true);
   };
 
+  const handleLogout = () => {
+    sessionStorage.removeItem('aec_auth');
+    setAuthed(false);
+  };
+
   if (!authed) return <LoginPage onLogin={handleLogin} />;
-  return <App initialRole={role} />;
+  return <App initialRole={authData.role || 'student'} authData={authData} onLogout={handleLogout} />;
 }
 
 
-function App({ initialRole }) {
-  const [activeTab, setActiveTab] = useState('assistant'); // 'assistant', 'documents', 'upload', 'benchmark', 'analytics', 'settings'
+function App({ initialRole, authData = {}, onLogout }) {
+  const [activeTab, setActiveTab] = useState(() => initialRole === 'staff' ? 'documents' : initialRole === 'admin' ? 'analytics' : 'assistant'); // 'assistant', 'documents', 'upload', 'benchmark', 'analytics', 'settings'
   const [userRole, setUserRole] = useState(() => initialRole || localStorage.getItem('aec_assist_role') || 'student');
   const [darkMode, setDarkMode] = useState(() => localStorage.getItem('aec_assist_theme') === 'dark');
   const [categoriesData, setCategoriesData] = useState({ categories: [], departments: [] });
@@ -1013,60 +1023,122 @@ I answer questions strictly using verified AEC Salem official documents, includi
           </div>
         </div>
 
-        {/* Navigation Links */}
+        {/* Navigation Links Customized per Role */}
         <nav className="flex-1 p-3 space-y-1.5 overflow-y-auto custom-scrollbar">
-          <button
-            onClick={() => setActiveTab('assistant')}
-            className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'assistant' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
-          >
-            <i data-lucide="message-square" className="w-4 h-4"></i>
-            AEC Chat Assistant
-          </button>
+          {userRole === 'student' && (
+            <>
+              <button
+                onClick={() => setActiveTab('assistant')}
+                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'assistant' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
+              >
+                <i data-lucide="message-square" className="w-4 h-4"></i>
+                🎓 Campus AI Assistant
+              </button>
 
-          <button
-            onClick={() => setActiveTab('documents')}
-            className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'documents' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
-          >
-            <i data-lucide="file-text" className="w-4 h-4"></i>
-            Documents Hub
-            {documents.length > 0 && (
-              <span className="ml-auto text-xs bg-slate-800 text-slate-300 px-2 py-0.5 rounded-full font-semibold">
-                {documents.length}
-              </span>
-            )}
-          </button>
+              <button
+                onClick={() => setActiveTab('documents')}
+                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'documents' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
+              >
+                <i data-lucide="file-text" className="w-4 h-4"></i>
+                📜 Circulars & Regulations
+                {documents.length > 0 && (
+                  <span className="ml-auto text-xs bg-slate-800 text-slate-300 px-2 py-0.5 rounded-full font-semibold">
+                    {documents.length}
+                  </span>
+                )}
+              </button>
+            </>
+          )}
 
-          <button
-            onClick={() => setActiveTab('upload')}
-            className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'upload' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
-          >
-            <i data-lucide="upload-cloud" className="w-4 h-4"></i>
-            Ingest Document (PDF/OCR)
-          </button>
+          {userRole === 'staff' && (
+            <>
+              <button
+                onClick={() => setActiveTab('documents')}
+                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'documents' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
+              >
+                <i data-lucide="file-text" className="w-4 h-4"></i>
+                📂 Faculty Document Hub
+                {documents.length > 0 && (
+                  <span className="ml-auto text-xs bg-slate-800 text-slate-300 px-2 py-0.5 rounded-full font-semibold">
+                    {documents.length}
+                  </span>
+                )}
+              </button>
 
-          <button
-            onClick={() => setActiveTab('benchmark')}
-            className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'benchmark' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
-          >
-            <i data-lucide="check-square" className="w-4 h-4"></i>
-            50-Q Evaluation Suite
-          </button>
+              <button
+                onClick={() => setActiveTab('upload')}
+                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'upload' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
+              >
+                <i data-lucide="upload-cloud" className="w-4 h-4"></i>
+                📤 Publish Circular / Notice
+              </button>
 
-          <button
-            onClick={() => setActiveTab('analytics')}
-            className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'analytics' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
-          >
-            <i data-lucide="bar-chart-3" className="w-4 h-4"></i>
-            Audit & Analytics
-          </button>
+              <button
+                onClick={() => setActiveTab('analytics')}
+                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'analytics' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
+              >
+                <i data-lucide="bar-chart-3" className="w-4 h-4"></i>
+                ❓ Student Unanswered Queries
+              </button>
 
-          <button
-            onClick={() => setActiveTab('settings')}
-            className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'settings' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
-          >
-            <i data-lucide="settings" className="w-4 h-4"></i>
-            Settings
-          </button>
+              <button
+                onClick={() => setActiveTab('assistant')}
+                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'assistant' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
+              >
+                <i data-lucide="message-square" className="w-4 h-4"></i>
+                💬 Academic AI Assistant
+              </button>
+            </>
+          )}
+
+          {userRole === 'admin' && (
+            <>
+              <button
+                onClick={() => setActiveTab('analytics')}
+                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'analytics' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
+              >
+                <i data-lucide="bar-chart-3" className="w-4 h-4"></i>
+                ⚡ System Overview & Audit
+              </button>
+
+              <button
+                onClick={() => setActiveTab('documents')}
+                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'documents' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
+              >
+                <i data-lucide="file-text" className="w-4 h-4"></i>
+                📂 Repository Index
+                {documents.length > 0 && (
+                  <span className="ml-auto text-xs bg-slate-800 text-slate-300 px-2 py-0.5 rounded-full font-semibold">
+                    {documents.length}
+                  </span>
+                )}
+              </button>
+
+              <button
+                onClick={() => setActiveTab('upload')}
+                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'upload' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
+              >
+                <i data-lucide="upload-cloud" className="w-4 h-4"></i>
+                📤 Ingest & OCR Processing
+              </button>
+
+              <button
+                onClick={() => setActiveTab('benchmark')}
+                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'benchmark' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
+              >
+                <i data-lucide="check-square" className="w-4 h-4"></i>
+                🧪 50-Q RAG Benchmark Suite
+              </button>
+
+              <button
+                onClick={() => setActiveTab('settings')}
+                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'settings' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
+              >
+                <i data-lucide="settings" className="w-4 h-4"></i>
+                ⚙️ Portal Settings
+              </button>
+            </>
+          )}
         </nav>
 
         {/* Footer info */}
