@@ -707,6 +707,7 @@ function App({ initialRole, authData = {}, onLogout }) {
   const [geminiKey, setGeminiKey] = useState('');
   const [hasGeminiKey, setHasGeminiKey] = useState(false);
   const [settingsNotice, setSettingsNotice] = useState(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Initialize
   useEffect(() => {
@@ -1069,9 +1070,176 @@ I answer questions strictly using verified AEC Salem official documents, includi
   };
 
   return (
-    <div className="flex h-screen overflow-hidden">
-      {/* Sidebar */}
-      <aside className="w-64 bg-slate-900 text-slate-100 flex flex-col border-r border-slate-800 shrink-0">
+    <div className="flex h-screen overflow-hidden relative">
+      {/* Mobile Slide-Over Navigation Drawer */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-50 lg:hidden flex">
+          <div 
+            className="fixed inset-0 bg-slate-950/75 backdrop-blur-sm transition-opacity"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <aside className="relative w-72 max-w-[85vw] bg-slate-900 text-slate-100 flex flex-col h-full z-10 shadow-2xl border-r border-slate-800">
+            {/* Drawer Header */}
+            <div className="p-4 border-b border-slate-800 flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-amber-500 flex items-center justify-center text-white font-extrabold text-xs shadow-md shadow-indigo-500/30">
+                  AEC
+                </div>
+                <div>
+                  <h1 className="font-extrabold text-sm text-white">AEC Assist RAG</h1>
+                  <p className="text-[10px] text-slate-400">Campusmind Portal</p>
+                </div>
+              </div>
+              <button 
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300"
+              >
+                <i data-lucide="x" className="w-5 h-5"></i>
+              </button>
+            </div>
+
+            {/* Portal Role Selector in Mobile Drawer */}
+            <div className="px-4 py-3 bg-slate-950/60 border-b border-slate-800/80">
+              <div className="flex items-center justify-between mb-1.5">
+                <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Portal Role</span>
+                <span className={`text-[10px] uppercase font-bold px-1.5 py-0.5 rounded ${userRole === 'student' ? 'bg-emerald-500/20 text-emerald-400' : userRole === 'staff' ? 'bg-purple-500/20 text-purple-400' : 'bg-amber-500/20 text-amber-400'}`}>
+                  {userRole}
+                </span>
+              </div>
+              <div className="grid grid-cols-3 p-1 bg-slate-800/80 rounded-lg text-xs font-medium gap-1">
+                <button
+                  onClick={() => { setUserRole('student'); fetchDocuments(); setMobileMenuOpen(false); }}
+                  className={`py-1 rounded-md text-center ${userRole === 'student' ? 'bg-indigo-600 text-white shadow' : 'text-slate-400'}`}
+                >
+                  Student
+                </button>
+                <button
+                  onClick={() => { setUserRole('staff'); fetchDocuments(); setMobileMenuOpen(false); }}
+                  className={`py-1 rounded-md text-center ${userRole === 'staff' ? 'bg-indigo-600 text-white shadow' : 'text-slate-400'}`}
+                >
+                  Faculty
+                </button>
+                <button
+                  onClick={() => { setUserRole('admin'); fetchDocuments(); setMobileMenuOpen(false); }}
+                  className={`py-1 rounded-md text-center ${userRole === 'admin' ? 'bg-indigo-600 text-white shadow' : 'text-slate-400'}`}
+                >
+                  Admin
+                </button>
+              </div>
+            </div>
+
+            {/* Navigation links inside Mobile Drawer */}
+            <nav className="flex-1 p-3 space-y-1.5 overflow-y-auto custom-scrollbar">
+              <button
+                onClick={() => { setActiveTab('assistant'); setMobileMenuOpen(false); }}
+                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'assistant' ? 'bg-indigo-600 text-white font-semibold shadow' : 'text-slate-300 hover:bg-slate-800'}`}
+              >
+                <i data-lucide="bot" className="w-4 h-4 text-indigo-400"></i>
+                <span>🤖 AI Chatbox</span>
+              </button>
+              <button
+                onClick={() => { setActiveTab('profile'); setMobileMenuOpen(false); }}
+                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'profile' ? 'bg-indigo-600 text-white font-semibold shadow' : 'text-slate-300 hover:bg-slate-800'}`}
+              >
+                <i data-lucide="user" className="w-4 h-4 text-emerald-400"></i>
+                <span>👤 Profile</span>
+              </button>
+              <button
+                onClick={() => { setActiveTab('college-site'); setMobileMenuOpen(false); }}
+                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'college-site' ? 'bg-indigo-600 text-white font-semibold shadow' : 'text-slate-300 hover:bg-slate-800'}`}
+              >
+                <i data-lucide="globe" className="w-4 h-4 text-blue-400"></i>
+                <span>🏛️ College Website</span>
+              </button>
+              <button
+                onClick={() => { setActiveTab('admissions'); setMobileMenuOpen(false); }}
+                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'admissions' ? 'bg-indigo-600 text-white font-semibold shadow' : 'text-slate-300 hover:bg-slate-800'}`}
+              >
+                <i data-lucide="graduation-cap" className="w-4 h-4 text-amber-400"></i>
+                <span>🎓 Registration Portal</span>
+              </button>
+              <button
+                onClick={() => { setActiveTab('documents'); setMobileMenuOpen(false); }}
+                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'documents' ? 'bg-indigo-600 text-white font-semibold shadow' : 'text-slate-300 hover:bg-slate-800'}`}
+              >
+                <i data-lucide="file-text" className="w-4 h-4 text-violet-400"></i>
+                <span>📜 Documents Hub</span>
+                {documents.length > 0 && (
+                  <span className="ml-auto text-xs bg-slate-800 text-slate-300 px-2 py-0.5 rounded-full font-semibold">
+                    {documents.length}
+                  </span>
+                )}
+              </button>
+              {(userRole === 'staff' || userRole === 'admin') && (
+                <button
+                  onClick={() => { setActiveTab('upload'); setMobileMenuOpen(false); }}
+                  className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'upload' ? 'bg-indigo-600 text-white shadow' : 'text-slate-300 hover:bg-slate-800'}`}
+                >
+                  <i data-lucide="upload-cloud" className="w-4 h-4 text-cyan-400"></i>
+                  <span>📤 Ingest Document</span>
+                </button>
+              )}
+              {userRole === 'staff' && (
+                <button
+                  onClick={() => { setActiveTab('analytics'); setMobileMenuOpen(false); }}
+                  className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'analytics' ? 'bg-indigo-600 text-white shadow' : 'text-slate-300 hover:bg-slate-800'}`}
+                >
+                  <i data-lucide="help-circle" className="w-4 h-4 text-pink-400"></i>
+                  <span>❓ Unanswered Queries</span>
+                </button>
+              )}
+              {userRole === 'admin' && (
+                <>
+                  <button
+                    onClick={() => { setActiveTab('benchmark'); setMobileMenuOpen(false); }}
+                    className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'benchmark' ? 'bg-indigo-600 text-white shadow' : 'text-slate-300 hover:bg-slate-800'}`}
+                  >
+                    <i data-lucide="check-square" className="w-4 h-4 text-emerald-400"></i>
+                    <span>🧪 Evaluation Suite</span>
+                  </button>
+                  <button
+                    onClick={() => { setActiveTab('analytics'); setMobileMenuOpen(false); }}
+                    className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'analytics' ? 'bg-indigo-600 text-white shadow' : 'text-slate-300 hover:bg-slate-800'}`}
+                  >
+                    <i data-lucide="bar-chart-3" className="w-4 h-4 text-yellow-400"></i>
+                    <span>⚡ System Analytics</span>
+                  </button>
+                  <button
+                    onClick={() => { setActiveTab('settings'); setMobileMenuOpen(false); }}
+                    className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'settings' ? 'bg-indigo-600 text-white shadow' : 'text-slate-300 hover:bg-slate-800'}`}
+                  >
+                    <i data-lucide="settings" className="w-4 h-4 text-slate-400"></i>
+                    <span>⚙️ Settings</span>
+                  </button>
+                </>
+              )}
+            </nav>
+
+            {/* Mobile Drawer Footer */}
+            <div className="p-4 border-t border-slate-800 bg-slate-950/40 space-y-3">
+              <div className="flex items-center justify-between text-xs text-slate-400">
+                <span>Theme</span>
+                <button
+                  onClick={() => setDarkMode(!darkMode)}
+                  className="p-1.5 bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-300 transition-colors flex items-center gap-1.5"
+                >
+                  <i data-lucide={darkMode ? "sun" : "moon"} className="w-4 h-4"></i>
+                  <span className="capitalize">{darkMode ? 'Light' : 'Dark'}</span>
+                </button>
+              </div>
+              <a
+                href="/login"
+                className="w-full text-xs py-2 px-3 bg-indigo-600/20 text-indigo-300 hover:bg-indigo-600/30 rounded-lg transition-colors flex items-center justify-center gap-1.5 border border-indigo-500/30 font-semibold"
+              >
+                <i data-lucide="log-out" className="w-3.5 h-3.5"></i>
+                Switch Account / Login
+              </a>
+            </div>
+          </aside>
+        </div>
+      )}
+      {/* Desktop Sidebar */}
+      <aside className="hidden lg:flex w-64 bg-slate-900 text-slate-100 flex-col border-r border-slate-800 shrink-0">
         
         {/* Brand Header */}
         <div className="p-4 border-b border-slate-800 flex items-center space-x-3">
@@ -1237,11 +1405,18 @@ I answer questions strictly using verified AEC Salem official documents, includi
       </aside>
 
       {/* Main Content Area */}
-      <main className="flex-1 flex flex-col overflow-hidden bg-slate-50 dark:bg-slate-950">
+      <main className="flex-1 flex flex-col overflow-hidden bg-slate-50 dark:bg-slate-950 pb-16 lg:pb-0 relative">
         
         {/* Top Header Bar */}
-        <header className="h-16 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md px-6 flex items-center justify-between shrink-0 z-10">
-          <div className="flex items-center space-x-3">
+        <header className="h-16 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md px-3 sm:px-6 flex items-center justify-between shrink-0 z-10">
+          <div className="flex items-center space-x-2 sm:space-x-3 min-w-0">
+            <button
+              onClick={() => setMobileMenuOpen(true)}
+              className="lg:hidden p-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors shrink-0"
+              aria-label="Open Navigation Menu"
+            >
+              <i data-lucide="menu" className="w-5 h-5"></i>
+            </button>
             <h2 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
                             {activeTab === 'assistant' && (
                 <>
