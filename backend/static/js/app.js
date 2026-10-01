@@ -669,6 +669,10 @@ function App({ initialRole, authData = {}, onLogout }) {
   // Assistant Chat State
   const [messages, setMessages] = useState([]);
   const [inputQuery, setInputQuery] = useState('');
+  const [suggestedList, setSuggestedList] = useState([]);
+  const [activeSuggestIdx, setActiveSuggestIdx] = useState(-1);
+  const [showSuggestDropdown, setShowSuggestDropdown] = useState(false);
+  const inputRef = useRef(null);
   const [isTyping, setIsTyping] = useState(false);
   const [selectedDept, setSelectedDept] = useState('All Departments');
   const [selectedCategory, setSelectedCategory] = useState('All Categories');
@@ -1731,18 +1735,98 @@ function App({ initialRole, authData = {}, onLogout }) {
               <div ref={chatBottomRef} />
             </div>
 
-            {/* Input Bar */}
-            <div className="p-4 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 shrink-0">
+            {/* Input Bar with As-You-Type Suggestions */}
+            <div className="p-4 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 shrink-0 relative">
+              
+              {/* Floating As-You-Type Autocomplete Suggestions Dropdown */}
+              {showSuggestDropdown && suggestedList.length > 0 && (
+                <div className="max-w-4xl mx-auto mb-2 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border border-indigo-200 dark:border-indigo-900/60 rounded-2xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-2 duration-200 z-30">
+                  <div className="px-3.5 py-1.5 bg-indigo-50/80 dark:bg-indigo-950/50 border-b border-indigo-100 dark:border-indigo-900/40 flex items-center justify-between text-[11px] font-bold text-indigo-700 dark:text-indigo-300">
+                    <span className="flex items-center gap-1.5">
+                      <i data-lucide="sparkles" className="w-3.5 h-3.5 text-indigo-500"></i>
+                      <span>Smart Suggestions (Press ↑ ↓ to navigate, Tab/Enter to select)</span>
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setShowSuggestDropdown(false)}
+                      className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xs px-1"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                  <div className="divide-y divide-slate-100 dark:divide-slate-800/60">
+                    {suggestedList.map((item, idx) => (
+                      <button
+                        key={idx}
+                        type="button"
+                        onClick={() => {
+                          setInputQuery(item.query);
+                          setShowSuggestDropdown(false);
+                          handleSendMessage(item.query);
+                        }}
+                        onMouseEnter={() => setActiveSuggestIdx(idx)}
+                        className={`w-full text-left px-4 py-2.5 flex items-center justify-between gap-3 text-xs transition-colors ${activeSuggestIdx === idx ? 'bg-indigo-50 dark:bg-indigo-950/70 text-indigo-900 dark:text-white font-semibold' : 'hover:bg-slate-50 dark:hover:bg-slate-800/50 text-slate-700 dark:text-slate-200'}`}
+                      >
+                        <div className="flex items-center gap-2.5 truncate">
+                          <span className="p-1 rounded-lg bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 shrink-0">
+                            <i data-lucide="search" className="w-3.5 h-3.5"></i>
+                          </span>
+                          <span className="truncate">{item.query}</span>
+                        </div>
+                        <span className="shrink-0 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                          {item.category}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               <form
-                onSubmit={(e) => { e.preventDefault(); handleSendMessage(); }}
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  if (activeSuggestIdx >= 0 && activeSuggestIdx < suggestedList.length) {
+                    const chosen = suggestedList[activeSuggestIdx].query;
+                    setInputQuery(chosen);
+                    setShowSuggestDropdown(false);
+                    handleSendMessage(chosen);
+                  } else {
+                    setShowSuggestDropdown(false);
+                    handleSendMessage();
+                  }
+                }}
                 className="max-w-4xl mx-auto flex gap-2 relative"
               >
                 <div className="relative flex-1">
                   <input
+                    ref={inputRef}
                     type="text"
                     value={inputQuery}
+                    onFocus={() => {
+                      if (inputQuery.trim().length >= 2 && suggestedList.length > 0) {
+                        setShowSuggestDropdown(true);
+                      }
+                    }}
+                    onKeyDown={(e) => {
+                      if (showSuggestDropdown && suggestedList.length > 0) {
+                        if (e.key === 'ArrowDown') {
+                          e.preventDefault();
+                          setActiveSuggestIdx(prev => (prev < suggestedList.length - 1 ? prev + 1 : 0));
+                        } else if (e.key === 'ArrowUp') {
+                          e.preventDefault();
+                          setActiveSuggestIdx(prev => (prev > 0 ? prev - 1 : suggestedList.length - 1));
+                        } else if (e.key === 'Tab') {
+                          e.preventDefault();
+                          const targetIdx = activeSuggestIdx >= 0 ? activeSuggestIdx : 0;
+                          setInputQuery(suggestedList[targetIdx].query);
+                          setShowSuggestDropdown(false);
+                        } else if (e.key === 'Escape') {
+                          setShowSuggestDropdown(false);
+                        }
+                      }
+                    }}
                     onChange={(e) => setInputQuery(e.target.value)}
-                    placeholder={userRole === 'student' ? "Ask about Anna University attendance, condonation fee, tuition dates, exam timetables, bus routes..." : "Ask about Casual Leave (CL), Anna University Zonal OD, research incentives, biometric rules..."}
+                    placeholder={userRole === 'student' ? "Type a question (e.g. 'admission cutoff', 'cse timetable', 'attendance', 'bus routes')..." : "Ask about Casual Leave (CL), Anna University Zonal OD, research incentives, biometric rules..."}
                     className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-xl pl-4 pr-12 py-3.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all shadow-inner"
                   />
                   <button
