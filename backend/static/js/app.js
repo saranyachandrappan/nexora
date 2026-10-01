@@ -735,8 +735,6 @@ function App({ initialRole, authData = {}, onLogout }) {
     if (activeTab === 'analytics') {
       fetchAnalytics();
       fetchUnansweredQueries();
-    } else if (activeTab === 'documents') {
-      fetchDocuments();
     } else if (activeTab === 'settings') {
       fetchSettings();
     }
@@ -1184,18 +1182,7 @@ function App({ initialRole, authData = {}, onLogout }) {
                 <i data-lucide="graduation-cap" className="w-4 h-4 text-amber-400"></i>
                 <span>🎓 Registration Portal</span>
               </button>
-              <button
-                onClick={() => { setActiveTab('documents'); setMobileMenuOpen(false); }}
-                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'documents' ? 'bg-indigo-600 text-white font-semibold shadow' : 'text-slate-300 hover:bg-slate-800'}`}
-              >
-                <i data-lucide="file-text" className="w-4 h-4 text-violet-400"></i>
-                <span>📜 Documents Hub</span>
-                {documents.length > 0 && (
-                  <span className="ml-auto text-xs bg-slate-800 text-slate-300 px-2 py-0.5 rounded-full font-semibold">
-                    {documents.length}
-                  </span>
-                )}
-              </button>
+
               {(userRole === 'staff' || userRole === 'admin') && (
                 <button
                   onClick={() => { setActiveTab('upload'); setMobileMenuOpen(false); }}
@@ -1345,18 +1332,7 @@ function App({ initialRole, authData = {}, onLogout }) {
             <span>🎓 Registration Portal</span>
           </button>
 
-          <button
-            onClick={() => setActiveTab('documents')}
-            className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'documents' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30 font-semibold' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
-          >
-            <i data-lucide="file-text" className="w-4 h-4 text-violet-400"></i>
-            <span>📜 Documents Hub</span>
-            {documents.length > 0 && (
-              <span className="ml-auto text-xs bg-slate-800 text-slate-300 px-2 py-0.5 rounded-full font-semibold">
-                {documents.length}
-              </span>
-            )}
-          </button>
+
 
           {/* Role-Specific Secondary Items */}
           {(userRole === 'staff' || userRole === 'admin') && (
@@ -1494,14 +1470,7 @@ function App({ initialRole, authData = {}, onLogout }) {
                   <span>College Registration & Admissions 2026 Portal</span>
                 </>
               )}
-              {activeTab === 'documents' && (
-                <>
-                  <span className="p-1.5 bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400 rounded-lg">
-                    <i data-lucide="folder" className="w-5 h-5"></i>
-                  </span>
-                  <span>Institutional Document Repository & Page-Tracked Viewer</span>
-                </>
-              )}
+
               {activeTab === 'upload' && (
                 <>
                   <span className="p-1.5 bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400 rounded-lg">
@@ -1618,14 +1587,7 @@ function App({ initialRole, authData = {}, onLogout }) {
                   <i data-lucide="graduation-cap" className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400"></i>
                   <span>🎓 Admission Portal</span>
                 </button>
-                <button
-                  onClick={() => setActiveTab('documents')}
-                  className="flex items-center gap-1.5 px-3 py-1.5 bg-purple-50 hover:bg-purple-100 dark:bg-purple-950/60 dark:hover:bg-purple-900 text-purple-700 dark:text-purple-300 font-bold rounded-xl border border-purple-200 dark:border-purple-800/80 transition-all shadow-sm hover:scale-105"
-                  title="Open Documents Hub"
-                >
-                  <i data-lucide="file-text" className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400"></i>
-                  <span>📜 Documents Hub ({documents.length})</span>
-                </button>
+
               </div>
 
               <div className="flex items-center gap-3 shrink-0">
@@ -2017,7 +1979,7 @@ function App({ initialRole, authData = {}, onLogout }) {
                 </a>
 
                 <div
-                  onClick={() => setActiveTab('documents')}
+                  onClick={() => setActiveTab('assistant')}
                   className="p-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm hover:border-indigo-500 hover:shadow-md transition-all cursor-pointer group"
                 >
                   <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/60 text-indigo-600 flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition-transform">
@@ -2387,121 +2349,6 @@ function App({ initialRole, authData = {}, onLogout }) {
                 </div>
               </div>
 
-            </div>
-          </div>
-        )}
-
-        {/* Tab 2: Documents Hub */}
-        {activeTab === 'documents' && (
-          <div className="flex-1 flex flex-col p-6 overflow-hidden">
-            <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-wrap gap-3 items-center justify-between mb-6">
-              <button
-                onClick={() => setActiveTab('assistant')}
-                className="px-3.5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-md shadow-indigo-600/20 transition-all shrink-0 hover:scale-105"
-                title="Return to AEC Assist RAG AI Chatbox"
-              >
-                <i data-lucide="arrow-left" className="w-4 h-4"></i>
-                <span>← Back to AEC Assist RAG</span>
-              </button>
-              <div className="flex items-center gap-2 flex-1 min-w-[260px]">
-                <div className="relative flex-1">
-                  <i data-lucide="search" className="w-4 h-4 text-slate-400 absolute left-3 top-3"></i>
-                  <input
-                    type="text"
-                    value={docSearchQuery}
-                    onChange={(e) => setDocSearchQuery(e.target.value)}
-                    onKeyDown={(e) => e.key === 'Enter' && fetchDocuments()}
-                    placeholder="Search circulars, regulations, timetables..."
-                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-xl pl-9 pr-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                  />
-                </div>
-                <button
-                  onClick={fetchDocuments}
-                  className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-sm font-medium transition-colors"
-                >
-                  Filter
-                </button>
-              </div>
-
-              <div className="flex items-center gap-2 flex-wrap">
-                <select
-                  value={docFilterDept}
-                  onChange={(e) => { setDocFilterDept(e.target.value); setTimeout(fetchDocuments, 10); }}
-                  className="bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-800 dark:text-slate-200"
-                >
-                  <option value="All">All Departments</option>
-                  {categoriesData.departments?.filter(d => d !== 'All Departments').map(d => (
-                    <option key={d} value={d}>{d}</option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            {/* Document Cards Grid */}
-            <div className="flex-1 overflow-y-auto custom-scrollbar">
-              {docLoading ? (
-                <div className="flex items-center justify-center h-64 text-slate-400 gap-2">
-                  <i data-lucide="loader-2" className="w-6 h-6 animate-spin text-indigo-500"></i>
-                  Loading official documents...
-                </div>
-              ) : documents.length === 0 ? (
-                <div className="text-center py-16 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800">
-                  <i data-lucide="file-question" className="w-8 h-8 text-slate-400 mx-auto mb-2"></i>
-                  <h3 className="text-base font-semibold text-slate-700 dark:text-slate-300">No documents found</h3>
-                </div>
-              ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {documents.map((doc) => (
-                    <div
-                      key={doc.id}
-                      className="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 hover:border-indigo-500/50 transition-all shadow-sm flex flex-col justify-between"
-                    >
-                      <div>
-                        <div className="flex items-center justify-between gap-2 mb-3">
-                          <span className="text-[11px] font-semibold bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 px-2.5 py-1 rounded-lg border border-indigo-500/20 capitalize">
-                            {doc.doc_type || 'circular'}
-                          </span>
-                          {doc.urgency === 'urgent' && (
-                            <span className="text-[11px] font-bold bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 px-2 py-0.5 rounded-full border border-rose-500/30">
-                              Urgent
-                            </span>
-                          )}
-                        </div>
-
-                        <h4 className="font-bold text-slate-900 dark:text-white text-sm line-clamp-2 mb-2">
-                          {doc.title}
-                        </h4>
-
-                        <div className="space-y-1 text-xs text-slate-500 dark:text-slate-400 mb-4">
-                          <p><strong>Department:</strong> {doc.department}</p>
-                          <p><strong>Regulation/Year:</strong> {doc.year_regulation}</p>
-                          <p><strong>Effective Date:</strong> {doc.effective_date || 'Immediate'}</p>
-                          <p><strong>Access Level:</strong> <span className="capitalize font-semibold">{doc.access_level}</span></p>
-                          <p><strong>Chunk Count:</strong> {doc.chunk_count} page chunks</p>
-                        </div>
-                      </div>
-
-                      <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                        <button
-                          onClick={() => fetchDocumentDetail(doc.id)}
-                          className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1"
-                        >
-                          <i data-lucide="eye" className="w-3.5 h-3.5"></i>
-                          View Pages & Text
-                        </button>
-                        {userRole === 'admin' && (
-                          <button
-                            onClick={() => deleteDocument(doc.id, doc.title)}
-                            className="text-slate-400 hover:text-rose-500 p-1 rounded-md transition-colors"
-                          >
-                            <i data-lucide="trash-2" className="w-4 h-4"></i>
-                          </button>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
             </div>
           </div>
         )}
