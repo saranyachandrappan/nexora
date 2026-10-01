@@ -708,6 +708,8 @@ function App({ initialRole, authData = {}, onLogout }) {
   const [hasGeminiKey, setHasGeminiKey] = useState(false);
   const [settingsNotice, setSettingsNotice] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [admitFormData, setAdmitFormData] = useState({ name: '', phone: '', email: '', dept: 'AI&DS', marks12: '', community: 'General' });
+  const [admitSubmitted, setAdmitSubmitted] = useState(false);
 
   // Initialize
   useEffect(() => {
@@ -2117,6 +2119,18 @@ function App({ initialRole, authData = {}, onLogout }) {
                   <i data-lucide="arrow-left" className="w-4 h-4"></i>
                   <span>← Back to AEC Assist RAG</span>
                 </button>
+                <span className="text-xs text-slate-500 font-medium">AEC Assist • College Admission Portal 2026</span>
+              </div>
+              
+              {/* Back to AEC Assist RAG Navigation Key */}
+              <div className="flex items-center justify-between">
+                <button
+                  onClick={() => setActiveTab('assistant')}
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold shadow-md transition-all hover:scale-105"
+                >
+                  <i data-lucide="arrow-left" className="w-4 h-4"></i>
+                  <span>← Back to AEC Assist RAG</span>
+                </button>
                 <span className="text-xs text-slate-500 font-medium">Admissions & Registration 2026</span>
               </div>
               
@@ -2153,6 +2167,152 @@ function App({ initialRole, authData = {}, onLogout }) {
                     </a>
                   </div>
                 </div>
+              </div>
+
+
+              {/* Interactive Online Admission Application Form */}
+              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm space-y-5">
+                <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
+                  <div>
+                    <h4 className="text-base font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
+                      <i data-lucide="edit-3" className="w-5 h-5 text-amber-500"></i>
+                      Online Registration & Admission Form 2026-2027
+                    </h4>
+                    <p className="text-xs text-slate-500">Instant registration for B.E. / B.Tech engineering admissions at AEC Salem</p>
+                  </div>
+                  <span className="px-3 py-1 bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 rounded-full text-xs font-bold border border-emerald-500/20">
+                    🟢 Portal Active
+                  </span>
+                </div>
+
+                {admitSubmitted ? (
+                  <div className="p-6 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 rounded-2xl text-center space-y-3">
+                    <div className="w-12 h-12 rounded-full bg-emerald-500 text-white flex items-center justify-center text-2xl mx-auto shadow-lg shadow-emerald-500/30">
+                      ✓
+                    </div>
+                    <h4 className="text-lg font-bold text-emerald-800 dark:text-emerald-200">Registration Successfully Submitted!</h4>
+                    <p className="text-xs text-emerald-700 dark:text-emerald-300 max-w-md mx-auto">
+                      Thank you, <strong>{admitFormData.name}</strong>. Your registration for <strong>{admitFormData.dept}</strong> has been received with Application ID: <span className="font-mono font-bold">AEC2026-{Math.floor(100000 + Math.random() * 900000)}</span>.
+                    </p>
+                    <div className="flex justify-center gap-3 pt-2">
+                      <button
+                        onClick={() => setAdmitSubmitted(false)}
+                        className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold shadow transition-colors"
+                      >
+                        Submit Another Form
+                      </button>
+                      <button
+                        onClick={() => setActiveTab('assistant')}
+                        className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold shadow transition-colors"
+                      >
+                        Ask AI About Admission Status →
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      if (!admitFormData.name || !admitFormData.phone) {
+                        alert("Please provide your full name and contact phone number.");
+                        return;
+                      }
+                      setAdmitSubmitted(true);
+                    }}
+                    className="space-y-4"
+                  >
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs">
+                      <div>
+                        <label className="block text-slate-700 dark:text-slate-300 font-bold mb-1">Student Full Name *</label>
+                        <input
+                          type="text"
+                          required
+                          placeholder="e.g. S. Karthikeyan"
+                          value={admitFormData.name}
+                          onChange={(e) => setAdmitFormData({...admitFormData, name: e.target.value})}
+                          className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-slate-700 dark:text-slate-300 font-bold mb-1">Mobile / WhatsApp Number *</label>
+                        <input
+                          type="tel"
+                          required
+                          placeholder="+91 98765 43210"
+                          value={admitFormData.phone}
+                          onChange={(e) => setAdmitFormData({...admitFormData, phone: e.target.value})}
+                          className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-slate-700 dark:text-slate-300 font-bold mb-1">Email Address</label>
+                        <input
+                          type="email"
+                          placeholder="student@example.com"
+                          value={admitFormData.email}
+                          onChange={(e) => setAdmitFormData({...admitFormData, email: e.target.value})}
+                          className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-slate-700 dark:text-slate-300 font-bold mb-1">Preferred Engineering Branch *</label>
+                        <select
+                          value={admitFormData.dept}
+                          onChange={(e) => setAdmitFormData({...admitFormData, dept: e.target.value})}
+                          className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
+                        >
+                          <option value="B.Tech Artificial Intelligence & Data Science (AI&DS)">B.Tech Artificial Intelligence & Data Science (AI&DS)</option>
+                          <option value="B.E. Computer Science & Engineering (CSE)">B.E. Computer Science & Engineering (CSE)</option>
+                          <option value="B.Tech Information Technology (IT)">B.Tech Information Technology (IT)</option>
+                          <option value="B.E. Electronics & Communication Engineering (ECE)">B.E. Electronics & Communication Engineering (ECE)</option>
+                          <option value="B.E. Electrical & Electronics Engineering (EEE)">B.E. Electrical & Electronics Engineering (EEE)</option>
+                          <option value="B.E. Mechanical Engineering">B.E. Mechanical Engineering</option>
+                          <option value="B.E. Biomedical Engineering (BME)">B.E. Biomedical Engineering (BME)</option>
+                          <option value="B.E. Civil Engineering">B.E. Civil Engineering</option>
+                          <option value="M.E. Computer Science / Structural / Power Electronics">M.E. PG Programmes</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-slate-700 dark:text-slate-300 font-bold mb-1">+2 / Diploma Aggregate (%)</label>
+                        <input
+                          type="number"
+                          placeholder="e.g. 85%"
+                          value={admitFormData.marks12}
+                          onChange={(e) => setAdmitFormData({...admitFormData, marks12: e.target.value})}
+                          className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-slate-700 dark:text-slate-300 font-bold mb-1">Quota / Category</label>
+                        <select
+                          value={admitFormData.community}
+                          onChange={(e) => setAdmitFormData({...admitFormData, community: e.target.value})}
+                          className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
+                        >
+                          <option value="General TNEA">TNEA Single Window Govt Quota</option>
+                          <option value="Management Quota">Management Merit Quota</option>
+                          <option value="First Graduate Scheme">First Graduate Fee Waiver Scheme (TN Govt)</option>
+                          <option value="SC / ST / SCC Post-Matric">SC / ST Post-Matric Scholarship</option>
+                          <option value="Lateral Entry (Diploma)">Direct 2nd Year Lateral Entry</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
+                      <div className="text-xs text-slate-500 flex items-center gap-1.5">
+                        <i data-lucide="shield-check" className="w-4 h-4 text-emerald-500"></i>
+                        <span>No application processing fee. 100% verified AICTE application.</span>
+                      </div>
+                      <button
+                        type="submit"
+                        className="px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-extrabold text-sm rounded-xl shadow-lg shadow-amber-500/25 transition-all flex items-center gap-2 hover:scale-105"
+                      >
+                        <span>Submit Online Registration</span>
+                        <span>→</span>
+                      </button>
+                    </div>
+                  </form>
+                )}
               </div>
 
               {/* 4-Step Registration Guide */}
