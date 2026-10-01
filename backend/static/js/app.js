@@ -1117,119 +1117,99 @@ I answer questions strictly using verified AEC Salem official documents, includi
           </div>
         </div>
 
-        {/* Navigation Links Customized per Role */}
+                {/* Navigation Links */}
         <nav className="flex-1 p-3 space-y-1.5 overflow-y-auto custom-scrollbar">
-          {userRole === 'student' && (
-            <>
-              <button
-                onClick={() => setActiveTab('assistant')}
-                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'assistant' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
-              >
-                <i data-lucide="message-square" className="w-4 h-4"></i>
-                🎓 Campus AI Assistant
-              </button>
+          {/* Primary Core Items for all users */}
+          <button
+            onClick={() => setActiveTab('assistant')}
+            className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'assistant' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30 font-semibold' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
+          >
+            <i data-lucide="bot" className="w-4 h-4 text-indigo-400"></i>
+            <span>🤖 AI Chatbox</span>
+          </button>
 
-              <button
-                onClick={() => setActiveTab('documents')}
-                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'documents' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
-              >
-                <i data-lucide="file-text" className="w-4 h-4"></i>
-                📜 Circulars & Regulations
-                {documents.length > 0 && (
-                  <span className="ml-auto text-xs bg-slate-800 text-slate-300 px-2 py-0.5 rounded-full font-semibold">
-                    {documents.length}
-                  </span>
-                )}
-              </button>
-            </>
+          <button
+            onClick={() => setActiveTab('profile')}
+            className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'profile' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30 font-semibold' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
+          >
+            <i data-lucide="user" className="w-4 h-4 text-emerald-400"></i>
+            <span>👤 Profile</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('college-site')}
+            className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'college-site' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30 font-semibold' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
+          >
+            <i data-lucide="globe" className="w-4 h-4 text-blue-400"></i>
+            <span>🏛️ College Website</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('admissions')}
+            className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'admissions' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30 font-semibold' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
+          >
+            <i data-lucide="graduation-cap" className="w-4 h-4 text-amber-400"></i>
+            <span>🎓 Registration Portal</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('documents')}
+            className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'documents' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30 font-semibold' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
+          >
+            <i data-lucide="file-text" className="w-4 h-4 text-violet-400"></i>
+            <span>📜 Documents Hub</span>
+            {documents.length > 0 && (
+              <span className="ml-auto text-xs bg-slate-800 text-slate-300 px-2 py-0.5 rounded-full font-semibold">
+                {documents.length}
+              </span>
+            )}
+          </button>
+
+          {/* Role-Specific Secondary Items */}
+          {(userRole === 'staff' || userRole === 'admin') && (
+            <button
+              onClick={() => setActiveTab('upload')}
+              className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'upload' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
+            >
+              <i data-lucide="upload-cloud" className="w-4 h-4 text-cyan-400"></i>
+              <span>📤 Ingest Document</span>
+            </button>
           )}
 
           {userRole === 'staff' && (
-            <>
-              <button
-                onClick={() => setActiveTab('documents')}
-                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'documents' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
-              >
-                <i data-lucide="file-text" className="w-4 h-4"></i>
-                📂 Faculty Document Hub
-                {documents.length > 0 && (
-                  <span className="ml-auto text-xs bg-slate-800 text-slate-300 px-2 py-0.5 rounded-full font-semibold">
-                    {documents.length}
-                  </span>
-                )}
-              </button>
-
-              <button
-                onClick={() => setActiveTab('upload')}
-                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'upload' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
-              >
-                <i data-lucide="upload-cloud" className="w-4 h-4"></i>
-                📤 Publish Circular / Notice
-              </button>
-
-              <button
-                onClick={() => setActiveTab('analytics')}
-                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'analytics' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
-              >
-                <i data-lucide="bar-chart-3" className="w-4 h-4"></i>
-                ❓ Student Unanswered Queries
-              </button>
-
-              <button
-                onClick={() => setActiveTab('assistant')}
-                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'assistant' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
-              >
-                <i data-lucide="message-square" className="w-4 h-4"></i>
-                💬 Academic AI Assistant
-              </button>
-            </>
+            <button
+              onClick={() => setActiveTab('analytics')}
+              className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'analytics' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
+            >
+              <i data-lucide="help-circle" className="w-4 h-4 text-pink-400"></i>
+              <span>❓ Unanswered Queries</span>
+            </button>
           )}
 
           {userRole === 'admin' && (
             <>
               <button
-                onClick={() => setActiveTab('analytics')}
-                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'analytics' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
-              >
-                <i data-lucide="bar-chart-3" className="w-4 h-4"></i>
-                ⚡ System Overview & Audit
-              </button>
-
-              <button
-                onClick={() => setActiveTab('documents')}
-                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'documents' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
-              >
-                <i data-lucide="file-text" className="w-4 h-4"></i>
-                📂 Repository Index
-                {documents.length > 0 && (
-                  <span className="ml-auto text-xs bg-slate-800 text-slate-300 px-2 py-0.5 rounded-full font-semibold">
-                    {documents.length}
-                  </span>
-                )}
-              </button>
-
-              <button
-                onClick={() => setActiveTab('upload')}
-                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'upload' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
-              >
-                <i data-lucide="upload-cloud" className="w-4 h-4"></i>
-                📤 Ingest & OCR Processing
-              </button>
-
-              <button
                 onClick={() => setActiveTab('benchmark')}
                 className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'benchmark' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
               >
-                <i data-lucide="check-square" className="w-4 h-4"></i>
-                🧪 50-Q RAG Benchmark Suite
+                <i data-lucide="check-square" className="w-4 h-4 text-emerald-400"></i>
+                <span>🧪 Evaluation Suite</span>
+              </button>
+
+              <button
+                onClick={() => setActiveTab('analytics')}
+                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'analytics' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
+              >
+                <i data-lucide="bar-chart-3" className="w-4 h-4 text-yellow-400"></i>
+                <span>⚡ System Analytics</span>
               </button>
 
               <button
                 onClick={() => setActiveTab('settings')}
                 className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'settings' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30' : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'}`}
               >
-                <i data-lucide="settings" className="w-4 h-4"></i>
-                ⚙️ Portal Settings
+                <i data-lucide="settings" className="w-4 h-4 text-slate-400"></i>
+                <span>⚙️ Settings</span>
               </button>
             </>
           )}
@@ -1264,12 +1244,36 @@ I answer questions strictly using verified AEC Salem official documents, includi
         <header className="h-16 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md px-6 flex items-center justify-between shrink-0 z-10">
           <div className="flex items-center space-x-3">
             <h2 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              {activeTab === 'assistant' && (
+                            {activeTab === 'assistant' && (
                 <>
                   <span className="p-1.5 bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400 rounded-lg">
                     <i data-lucide="bot" className="w-5 h-5"></i>
                   </span>
-                  <span>AEC Assist: Annapoorana Engineering College Document Assistant</span>
+                  <span>AEC Assist: Intelligent Campus Document AI Chatbox</span>
+                </>
+              )}
+              {activeTab === 'profile' && (
+                <>
+                  <span className="p-1.5 bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 rounded-lg">
+                    <i data-lucide="user" className="w-5 h-5"></i>
+                  </span>
+                  <span>User Profile & Account Portal Settings</span>
+                </>
+              )}
+              {activeTab === 'college-site' && (
+                <>
+                  <span className="p-1.5 bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 rounded-lg">
+                    <i data-lucide="globe" className="w-5 h-5"></i>
+                  </span>
+                  <span>Annapoorana Engineering College Official Website Hub</span>
+                </>
+              )}
+              {activeTab === 'admissions' && (
+                <>
+                  <span className="p-1.5 bg-amber-50 dark:bg-amber-950/50 text-amber-600 dark:text-amber-400 rounded-lg">
+                    <i data-lucide="graduation-cap" className="w-5 h-5"></i>
+                  </span>
+                  <span>College Registration & Admissions 2026 Portal</span>
                 </>
               )}
               {activeTab === 'documents' && (
@@ -1506,6 +1510,403 @@ I answer questions strictly using verified AEC Salem official documents, includi
               </div>
             </div>
 
+          </div>
+        )}
+
+                {/* Tab: User Profile */}
+        {activeTab === 'profile' && (
+          <div className="flex-1 overflow-y-auto p-6 md:p-8 custom-scrollbar space-y-6">
+            <div className="max-w-4xl mx-auto space-y-6">
+              
+              {/* Profile Header Banner */}
+              <div className="bg-gradient-to-r from-indigo-600 via-indigo-700 to-purple-800 rounded-2xl p-6 md:p-8 text-white shadow-xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 -mr-8 -mt-8 w-48 h-48 rounded-full bg-white/10 blur-2xl pointer-events-none"></div>
+                <div className="flex flex-col sm:flex-row items-center gap-6 relative z-10">
+                  <div className="w-20 h-20 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center text-3xl font-extrabold shadow-inner border border-white/30">
+                    {userRole === 'student' ? '🎓' : userRole === 'staff' ? '👨‍🏫' : '🛡️'}
+                  </div>
+                  <div className="text-center sm:text-left flex-1">
+                    <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 mb-1">
+                      <h3 className="text-2xl font-extrabold">{authData.label || authData.username || 'AEC Portal User'}</h3>
+                      <span className="px-2.5 py-0.5 rounded-full text-xs font-bold uppercase bg-white/20 text-white border border-white/30">
+                        {userRole === 'student' ? 'Student' : userRole === 'staff' ? 'Faculty & Staff' : 'Administrator'}
+                      </span>
+                    </div>
+                    <p className="text-indigo-100 text-sm">Annapoorana Engineering College, Salem • NH-47 Sankari Main Road</p>
+                    <p className="text-xs text-indigo-200 mt-1">Username: <span className="font-mono font-semibold">{authData.username || userRole}</span></p>
+                  </div>
+                  {onLogout && (
+                    <button
+                      onClick={onLogout}
+                      className="px-4 py-2 bg-white/15 hover:bg-red-500 text-white rounded-xl text-xs font-bold transition-all border border-white/25 flex items-center gap-2 shadow"
+                    >
+                      <i data-lucide="log-out" className="w-4 h-4"></i>
+                      Sign Out
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              {/* Profile Details Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                {/* Academic & Role Credentials */}
+                <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm space-y-4">
+                  <h4 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+                    <i data-lucide="badge-check" className="w-4 h-4 text-indigo-600"></i>
+                    Account & Academic Info
+                  </h4>
+                  <div className="space-y-3 text-sm">
+                    <div className="flex justify-between py-1.5 border-b border-slate-100 dark:border-slate-800">
+                      <span className="text-slate-500 dark:text-slate-400">Institutional Role</span>
+                      <span className="font-bold text-indigo-600 dark:text-indigo-400 capitalize">{userRole}</span>
+                    </div>
+                    <div className="flex justify-between py-1.5 border-b border-slate-100 dark:border-slate-800">
+                      <span className="text-slate-500 dark:text-slate-400">Portal ID</span>
+                      <span className="font-mono font-semibold text-slate-800 dark:text-slate-200">
+                        {userRole === 'student' ? 'AEC/2026/STU-882' : userRole === 'staff' ? 'AEC/2026/FAC-104' : 'AEC/SYS/ADM-001'}
+                      </span>
+                    </div>
+                    <div className="flex justify-between py-1.5 border-b border-slate-100 dark:border-slate-800">
+                      <span className="text-slate-500 dark:text-slate-400">Department</span>
+                      <span className="font-semibold text-slate-800 dark:text-slate-200">
+                        {userRole === 'student' ? 'Computer Science & Engineering' : userRole === 'staff' ? 'Academic Faculty Wing' : 'Central Administration'}
+                      </span>
+                    </div>
+                    <div className="flex justify-between py-1.5 border-b border-slate-100 dark:border-slate-800">
+                      <span className="text-slate-500 dark:text-slate-400">Regulation</span>
+                      <span className="font-bold text-emerald-600 dark:text-emerald-400">Anna Univ R-2021 CBCS</span>
+                    </div>
+                    <div className="flex justify-between py-1.5">
+                      <span className="text-slate-500 dark:text-slate-400">Portal Status</span>
+                      <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-600 dark:text-emerald-400">
+                        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        Active & Verified
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Permissions & Security */}
+                <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm space-y-4">
+                  <h4 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+                    <i data-lucide="shield" className="w-4 h-4 text-emerald-600"></i>
+                    Portal Permissions & Access
+                  </h4>
+                  <div className="space-y-2.5 text-xs">
+                    <div className="p-3 bg-slate-50 dark:bg-slate-800/70 rounded-xl flex items-center justify-between">
+                      <div>
+                        <div className="font-bold text-slate-800 dark:text-slate-200">RAG Document Assistant</div>
+                        <div className="text-slate-500">Query college regulations, timetables & bylaws</div>
+                      </div>
+                      <span className="text-emerald-600 font-bold">Enabled</span>
+                    </div>
+                    <div className="p-3 bg-slate-50 dark:bg-slate-800/70 rounded-xl flex items-center justify-between">
+                      <div>
+                        <div className="font-bold text-slate-800 dark:text-slate-200">Official Document Ingestion</div>
+                        <div className="text-slate-500">Upload PDF, DOCX & OCR circulars</div>
+                      </div>
+                      <span className={userRole !== 'student' ? "text-emerald-600 font-bold" : "text-slate-400 font-medium"}>
+                        {userRole !== 'student' ? 'Granted' : 'Staff Only'}
+                      </span>
+                    </div>
+                    <div className="p-3 bg-slate-50 dark:bg-slate-800/70 rounded-xl flex items-center justify-between">
+                      <div>
+                        <div className="font-bold text-slate-800 dark:text-slate-200">System Benchmarks & Settings</div>
+                        <div className="text-slate-500">50-Q Evaluation Suite & Gemini Config</div>
+                      </div>
+                      <span className={userRole === 'admin' ? "text-emerald-600 font-bold" : "text-slate-400 font-medium"}>
+                        {userRole === 'admin' ? 'Full Admin' : 'Restricted'}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Quick Actions Bar */}
+              <div className="p-5 bg-indigo-50/80 dark:bg-indigo-950/30 border border-indigo-100 dark:border-indigo-900/40 rounded-2xl flex flex-wrap items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <span className="p-2 bg-indigo-600 text-white rounded-xl">
+                    <i data-lucide="settings" className="w-5 h-5"></i>
+                  </span>
+                  <div>
+                    <div className="text-sm font-bold text-slate-900 dark:text-white">Need to update your credentials?</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400">Contact the AEC Administration & Computer Center on campus</div>
+                  </div>
+                </div>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setActiveTab('assistant')}
+                    className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl shadow-md transition-colors"
+                  >
+                    Open AI Chatbox →
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        )}
+
+        {/* Tab: College Website Hub */}
+        {activeTab === 'college-site' && (
+          <div className="flex-1 overflow-y-auto p-6 md:p-8 custom-scrollbar space-y-6">
+            <div className="max-w-5xl mx-auto space-y-6">
+              
+              {/* Header Hero */}
+              <div className="bg-gradient-to-r from-blue-700 via-indigo-700 to-slate-900 rounded-2xl p-6 md:p-8 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-400 text-slate-950">
+                      Official Portal
+                    </span>
+                    <span className="text-xs text-blue-200">AICTE Approved • Anna University Affiliated</span>
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-extrabold tracking-tight">Annapoorana Engineering College</h3>
+                  <p className="text-blue-100 text-sm mt-1">NH-47 Sankari Main Road, Periya Seeragapadi, Salem - 636308, Tamil Nadu</p>
+                </div>
+                <a
+                  href="https://aecsalem.edu.in/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="px-5 py-3 bg-white text-blue-900 hover:bg-blue-50 font-extrabold text-sm rounded-xl shadow-lg transition-all flex items-center gap-2 shrink-0"
+                >
+                  <i data-lucide="external-link" className="w-4 h-4"></i>
+                  Launch aecsalem.edu.in ↗
+                </a>
+              </div>
+
+              {/* Quick Links Hub Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <a
+                  href="https://admission.aecsalem.edu.in/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="p-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm hover:border-indigo-500 hover:shadow-md transition-all group"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/60 text-amber-600 flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition-transform">
+                    🎓
+                  </div>
+                  <h4 className="font-bold text-slate-900 dark:text-white text-sm">Admissions 2026</h4>
+                  <p className="text-xs text-slate-500 mt-1">Online application & eligibility criteria</p>
+                </a>
+
+                <a
+                  href="https://aecsalem.edu.in/pay/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="p-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm hover:border-indigo-500 hover:shadow-md transition-all group"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition-transform">
+                    💳
+                  </div>
+                  <h4 className="font-bold text-slate-900 dark:text-white text-sm">Online Fee Payment</h4>
+                  <p className="text-xs text-slate-500 mt-1">Tuition, hostel & exam fee portal</p>
+                </a>
+
+                <div
+                  onClick={() => setActiveTab('documents')}
+                  className="p-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm hover:border-indigo-500 hover:shadow-md transition-all cursor-pointer group"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/60 text-indigo-600 flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition-transform">
+                    📜
+                  </div>
+                  <h4 className="font-bold text-slate-900 dark:text-white text-sm">Circulars & Timetables</h4>
+                  <p className="text-xs text-slate-500 mt-1">Anna Univ R2021 & Exam notifications</p>
+                </div>
+
+                <div
+                  onClick={() => setActiveTab('assistant')}
+                  className="p-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm hover:border-indigo-500 hover:shadow-md transition-all cursor-pointer group"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-purple-100 dark:bg-purple-950/60 text-purple-600 flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition-transform">
+                    🤖
+                  </div>
+                  <h4 className="font-bold text-slate-900 dark:text-white text-sm">AI Campus Mind</h4>
+                  <p className="text-xs text-slate-500 mt-1">Instant Q&A from college data</p>
+                </div>
+              </div>
+
+              {/* Departments & Research Centres */}
+              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm space-y-4">
+                <h4 className="text-base font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
+                  <i data-lucide="layers" className="w-5 h-5 text-indigo-600"></i>
+                  Academic Departments & Programmes
+                </h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-xs">
+                  <div className="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-100 dark:border-slate-700/50">
+                    <div className="font-bold text-indigo-600 dark:text-indigo-400">Artificial Intelligence & Data Science</div>
+                    <div className="text-slate-500">B.Tech • 4 Years CBCS</div>
+                  </div>
+                  <div className="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-100 dark:border-slate-700/50">
+                    <div className="font-bold text-indigo-600 dark:text-indigo-400">Computer Science & Engineering</div>
+                    <div className="text-slate-500">B.E. & M.E. Programmes</div>
+                  </div>
+                  <div className="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-100 dark:border-slate-700/50">
+                    <div className="font-bold text-indigo-600 dark:text-indigo-400">Information Technology (IT)</div>
+                    <div className="text-slate-500">B.Tech • Software Engineering</div>
+                  </div>
+                  <div className="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-100 dark:border-slate-700/50">
+                    <div className="font-bold text-indigo-600 dark:text-indigo-400">Electronics & Communication (ECE)</div>
+                    <div className="text-slate-500">B.E. & M.E. Communication Systems</div>
+                  </div>
+                  <div className="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-100 dark:border-slate-700/50">
+                    <div className="font-bold text-indigo-600 dark:text-indigo-400">Electrical & Electronics (EEE)</div>
+                    <div className="text-slate-500">B.E. & M.E. Power Electronics</div>
+                  </div>
+                  <div className="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-100 dark:border-slate-700/50">
+                    <div className="font-bold text-indigo-600 dark:text-indigo-400">Mechanical & Automobile Engineering</div>
+                    <div className="text-slate-500">B.E. & M.E. Safety Engineering</div>
+                  </div>
+                  <div className="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-100 dark:border-slate-700/50">
+                    <div className="font-bold text-indigo-600 dark:text-indigo-400">Civil & Structural Engineering</div>
+                    <div className="text-slate-500">B.E. & M.E. Structural Engg</div>
+                  </div>
+                  <div className="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-100 dark:border-slate-700/50">
+                    <div className="font-bold text-indigo-600 dark:text-indigo-400">Biomedical Engineering (BME)</div>
+                    <div className="text-slate-500">B.E. Medical Technologies</div>
+                  </div>
+                  <div className="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-100 dark:border-slate-700/50">
+                    <div className="font-bold text-indigo-600 dark:text-indigo-400">Science, Humanities & Management</div>
+                    <div className="text-slate-500">Maths, Physics, Chem, English, Tamil</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Direct Contacts & Address */}
+              <div className="p-6 bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
+                <div className="space-y-1 text-center md:text-left">
+                  <div className="font-bold text-slate-800 dark:text-slate-100 text-sm">Contact Campus Directory</div>
+                  <div className="text-slate-500">Principal: Dr. A. Anbuchezian | Email: info@aecsalem.edu.in</div>
+                </div>
+                <div className="flex flex-wrap items-center gap-3">
+                  <a href="tel:+919786911333" className="px-3.5 py-2 bg-indigo-600 text-white font-bold rounded-xl flex items-center gap-1.5 shadow">
+                    📞 +91 9786911333
+                  </a>
+                  <a href="tel:+919442000648" className="px-3.5 py-2 bg-slate-800 text-white font-bold rounded-xl flex items-center gap-1.5 shadow">
+                    📞 +91 9442000648
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        )}
+
+        {/* Tab: College Registration & Admissions Portal */}
+        {activeTab === 'admissions' && (
+          <div className="flex-1 overflow-y-auto p-6 md:p-8 custom-scrollbar space-y-6">
+            <div className="max-w-5xl mx-auto space-y-6">
+              
+              {/* Admissions Banner */}
+              <div className="bg-gradient-to-r from-amber-500 via-orange-600 to-indigo-800 rounded-2xl p-6 md:p-8 text-white shadow-xl relative overflow-hidden">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
+                  <div>
+                    <span className="px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-bold uppercase tracking-wider">
+                      Admissions Open 2026-2027
+                    </span>
+                    <h3 className="text-2xl md:text-3xl font-extrabold mt-2 tracking-tight">College Registration & Application Portal</h3>
+                    <p className="text-amber-100 text-sm mt-1 max-w-xl">
+                      Apply for Under Graduate (B.E. / B.Tech) and Post Graduate (M.E.) Engineering programmes at Annapoorana Engineering College, Salem.
+                    </p>
+                  </div>
+                  <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+                    <a
+                      href="https://admission.aecsalem.edu.in/"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="px-5 py-3 bg-white text-orange-900 hover:bg-orange-50 font-extrabold text-sm rounded-xl shadow-lg transition-all flex items-center justify-center gap-2"
+                    >
+                      <i data-lucide="edit-3" className="w-4 h-4"></i>
+                      Online Registration ↗
+                    </a>
+                    <a
+                      href="https://aecsalem.edu.in/pay/"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="px-5 py-3 bg-slate-900/80 hover:bg-slate-950 text-white font-extrabold text-sm rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 border border-white/20"
+                    >
+                      <i data-lucide="credit-card" className="w-4 h-4"></i>
+                      Online Fee Portal ↗
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* 4-Step Registration Guide */}
+              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm space-y-4">
+                <h4 className="text-base font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
+                  <i data-lucide="check-circle-2" className="w-5 h-5 text-emerald-600"></i>
+                  4-Step Admission & Registration Process
+                </h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+                  <div className="p-4 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200/70 dark:border-slate-700/60 space-y-2">
+                    <div className="w-7 h-7 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold">1</div>
+                    <div className="font-bold text-slate-900 dark:text-white text-sm">Online Application</div>
+                    <p className="text-slate-500 leading-relaxed">Register on the admission portal with 10th & 12th / Diploma marks and personal details.</p>
+                  </div>
+                  <div className="p-4 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200/70 dark:border-slate-700/60 space-y-2">
+                    <div className="w-7 h-7 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold">2</div>
+                    <div className="font-bold text-slate-900 dark:text-white text-sm">Document Verification</div>
+                    <p className="text-slate-500 leading-relaxed">Submit marksheets, Community certificate, TC & First Graduate certificates for verification.</p>
+                  </div>
+                  <div className="p-4 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200/70 dark:border-slate-700/60 space-y-2">
+                    <div className="w-7 h-7 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold">3</div>
+                    <div className="font-bold text-slate-900 dark:text-white text-sm">Seat Allotment</div>
+                    <p className="text-slate-500 leading-relaxed">Select your preferred branch (AI&DS, CSE, IT, ECE, EEE, MECH, CIVIL, BME) under TNEA or Management quota.</p>
+                  </div>
+                  <div className="p-4 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200/70 dark:border-slate-700/60 space-y-2">
+                    <div className="w-7 h-7 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold">4</div>
+                    <div className="font-bold text-slate-900 dark:text-white text-sm">Fee Remittance & ID</div>
+                    <p className="text-slate-500 leading-relaxed">Complete tuition / hostel fee payment online at aecsalem.edu.in/pay/ and receive your student ID card.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Scholarship & Helpline info */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm space-y-3">
+                  <h4 className="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
+                    <i data-lucide="award" className="w-4 h-4 text-amber-500"></i>
+                    Scholarships & Fee Concessions
+                  </h4>
+                  <ul className="text-xs text-slate-600 dark:text-slate-300 space-y-2">
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-500 font-bold">✓</span>
+                      <span><strong>First Graduate Scholarship (Govt of TN)</strong>: ₹25,000/year fee concession.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-500 font-bold">✓</span>
+                      <span><strong>Post-Matric Scholarship (SC / ST / SCC)</strong>: 100% tuition & exam fee waiver.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-500 font-bold">✓</span>
+                      <span><strong>Merit Scholarships</strong>: High cut-off scorers in +2 board examinations.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm space-y-3">
+                  <h4 className="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
+                    <i data-lucide="phone" className="w-4 h-4 text-indigo-500"></i>
+                    Admissions Helpdesk 2026
+                  </h4>
+                  <p className="text-xs text-slate-500">For enquiries regarding cutoff, fees, bus routes, or hostel facilities:</p>
+                  <div className="space-y-2 text-xs">
+                    <div className="p-2.5 bg-slate-50 dark:bg-slate-800/80 rounded-lg flex items-center justify-between">
+                      <span className="font-semibold text-slate-700 dark:text-slate-300">Admission Hotline:</span>
+                      <a href="tel:+919786911333" className="font-bold text-indigo-600 dark:text-indigo-400">+91 9786911333</a>
+                    </div>
+                    <div className="p-2.5 bg-slate-50 dark:bg-slate-800/80 rounded-lg flex items-center justify-between">
+                      <span className="font-semibold text-slate-700 dark:text-slate-300">College Office:</span>
+                      <a href="tel:+919442000648" className="font-bold text-indigo-600 dark:text-indigo-400">+91 9442000648</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
         )}
 
