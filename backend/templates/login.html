@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AEC Assist | Login & Portal Access</title>
+  
+  <!-- React 18 & Babel -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; min-height: 100vh; overflow-x: hidden; background: #f0f4ff; }
+  </style>
+</head>
+<body>
+  <div id="login-root"></div>
+
+  {% raw %}
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    const DEMO_CREDENTIALS = [
+      { role: 'student',  label: 'Student',      username: 'student',  password: 'aec2026',   badge: '🎓', color: '#6366f1' },
+      { role: 'staff',    label: 'Faculty/Staff', username: 'faculty',  password: 'aecstaff',  badge: '👨‍🏫', color: '#8b5cf6' },
+      { role: 'admin',    label: 'Administrator', username: 'admin',    password: 'aecadmin',  badge: '🛡️', color: '#f59e0b' },
+    ];
+
+    function hexToRgb(hex) {
+      const r = parseInt(hex.slice(1,3),16);
+      const g = parseInt(hex.slice(3,5),16);
+      const b = parseInt(hex.slice(5,7),16);
+      return `${r},${g},${b}`;
+    }
+
+    function StandaloneLoginPage() {
+      const [username, setUsername]       = useState('');
+      const [password, setPassword]       = useState('');
+      const [showPass,  setShowPass]      = useState(false);
+      const [error,     setError]         = useState('');
+      const [loading,   setLoading]       = useState(false);
+      const [activeRole, setActiveRole]   = useState('student');
+      const [shake,     setShake]         = useState(false);
+      const [view,      setView]          = useState('login');
+      const [fpEmail,   setFpEmail]       = useState('');
+      const [fpError,   setFpError]       = useState('');
+      const [fpLoading, setFpLoading]     = useState(false);
+      const [focusedInput, setFocusedInput] = useState('');
+
+      // Register state
+      const [regName,        setRegName]        = useState('');
+      const [regUsername,    setRegUsername]    = useState('');
+      const [regEmail,       setRegEmail]       = useState('');
+      const [regRole,        setRegRole]        = useState('student');
+      const [regPassword,    setRegPassword]    = useState('');
+      const [regConfirmPass, setRegConfirmPass] = useState('');
+      const [regError,       setRegError]       = useState('');
+      const [regLoading,     setRegLoading]     = useState(false);
+
+      const canvasRef = useRef(null);
+
+      useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let animId;
+        const resize = () => { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; };
+        resize();
+        window.addEventListener('resize', resize);
+        const particles = Array.from({ length: 55 }, () => ({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: Math.random() * 3 + 1,
+          dx: (Math.random() - 0.5) * 0.35,
+          dy: (Math.random() - 0.5) * 0.35,
+          alpha: Math.random() * 0.3 + 0.05,
+        }));
+        const draw = () => {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          particles.forEach(p => {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(99,102,241,${p.alpha})`;
+            ctx.fill();
+            p.x += p.dx; p.y += p.dy;
+            if (p.x < 0) p.x = canvas.width;
+            if (p.x > canvas.width) p.x = 0;
+            if (p.y < 0) p.y = canvas.height;
+            if (p.y > canvas.height) p.y = 0;
+          });
+          for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+              const dx = particles[i].x - particles[j].x;
+              const dy = particles[i].y - particles[j].y;
+              const dist = Math.sqrt(dx*dx + dy*dy);
+              if (dist < 100) {
+                ctx.beginPath();
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.strokeStyle = `rgba(139,92,246,${0.09 * (1 - dist/100)})`;
+                ctx.lineWidth = 0.7;
+                ctx.stroke();
+              }
+            }
+          }
+          animId = requestAnimationFrame(draw);
+        };
+        draw();
+        return () => { cancelAnimationFrame(animId); window.removeEventListener('resize', resize); };
+      }, []);
+
+      const selectedCred = DEMO_CREDENTIALS.find(c => c.role === activeRole);
+
+      const handleFillDemo = () => {
+        setUsername(selectedCred.username);
+        setPassword(selectedCred.password);
+        setError('');
+      };
+
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError(''); setLoading(true);
+        await new Promise(r => setTimeout(r, 900));
+        const match = DEMO_CREDENTIALS.find(
+          c => c.username === username.trim().toLowerCase() && c.password === password
+        );
+        if (match) {
+          sessionStorage.setItem('aec_auth', JSON.stringify({ role: match.role, username: match.username, label: match.label }));
+          window.location.href = '/dashboard';
+        } else {
+          setError('Invalid username or password. Please try again.');
+          setShake(true);
+          setTimeout(() => setShake(false), 600);
+        }
+        setLoading(false);
+      };
+
+      const handleForgotSubmit = async (e) => {
+        e.preventDefault();
+        setFpError('');
+        if (!fpEmail.trim() || !fpEmail.includes('@')) {
+          setFpError('Please enter a valid email address.');
+          return;
+        }
+        setFpLoading(true);
+        await new Promise(r => setTimeout(r, 1200));
+        setFpLoading(false);
+        setView('forgot-sent');
+      };
+
+      const handleRegisterSubmit = async (e) => {
+        e.preventDefault();
+        setRegError('');
+        if (!regName.trim()) { setRegError('Please enter your full name.'); return; }
+        if (!regUsername.trim()) { setRegError('Please choose a username.'); return; }
+        if (!regEmail.trim() || !regEmail.includes('@')) { setRegError('Please enter a valid email address.'); return; }
+        if (regPassword.length < 4) { setRegError('Password must be at least 4 characters.'); return; }
+        if (regPassword !== regConfirmPass) { setRegError('Passwords do not match.'); return; }
+
+        setRegLoading(true);
+        await new Promise(r => setTimeout(r, 1100));
+        setRegLoading(false);
+
+        const newUser = {
+          role: regRole,
+          username: regUsername.trim().toLowerCase(),
+          label: `${regName.trim()} (${regRole === 'student' ? 'Student' : regRole === 'staff' ? 'Faculty' : 'Admin'})`,
+        };
+
+        sessionStorage.setItem('aec_auth', JSON.stringify(newUser));
+        window.location.href = '/dashboard';
+      };
+
+      const roleColors = { student: '#6366f1', staff: '#8b5cf6', admin: '#f59e0b' };
+      const activeColor = roleColors[activeRole];
+
+      return (
+        <div style={{
+          minHeight: '100vh', width: '100vw', position: 'relative', overflow: 'hidden',
+          background: 'linear-gradient(135deg, #f0f4ff 0%, #e8eeff 25%, #f5f0ff 55%, #fdf4ff 80%, #fff8f0 100%)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }}>
+          <canvas ref={canvasRef} style={{ position:'absolute', inset:0, width:'100%', height:'100%', zIndex:0 }} />
+          <div style={{ position:'absolute', top:'-12%', left:'-8%', width:520, height:520, borderRadius:'50%',
+            background:'radial-gradient(circle, rgba(99,102,241,0.18) 0%, transparent 70%)',
+            animation:'wlOrbFloat 8s ease-in-out infinite', zIndex:1, filter:'blur(2px)' }} />
+          <div style={{ position:'absolute', bottom:'-14%', right:'-8%', width:600, height:600, borderRadius:'50%',
+            background:'radial-gradient(circle, rgba(139,92,246,0.14) 0%, transparent 70%)',
+            animation:'wlOrbFloat 10s ease-in-out infinite reverse', zIndex:1, filter:'blur(2px)' }} />
+
+          <style>{`
+            @keyframes wlOrbFloat {
+              0%,100% { transform: translateY(0px) scale(1); }
+              50%      { transform: translateY(-28px) scale(1.06); }
+            }
+            @keyframes wlFadeUp {
+              from { opacity:0; transform:translateY(30px) scale(0.98); }
+              to   { opacity:1; transform:translateY(0) scale(1); }
+            }
+            @keyframes wlFadeIn {
+              from { opacity:0; transform:translateY(8px); }
+              to   { opacity:1; transform:translateY(0); }
+            }
+            @keyframes wlShake {
+              0%,100% { transform:translateX(0); }
+              15%,45%,75% { transform:translateX(-7px); }
+              30%,60%,90% { transform:translateX(7px); }
+            }
+            @keyframes wlSpin { to { transform:rotate(360deg); } }
+            .wl-card { animation: wlFadeUp 0.65s cubic-bezier(.22,1,.36,1) both; }
+            .wl-card-shake { animation: wlShake 0.55s ease-in-out; }
+            .wl-fview { animation: wlFadeIn 0.35s ease both; }
+            .wl-input {
+              width:100%; box-sizing:border-box; padding:13px 14px 13px 42px;
+              background:rgba(255,255,255,0.78); border:1.5px solid rgba(200,205,255,0.65);
+              border-radius:12px; color:#1e1b4b; font-size:14px; font-family:inherit;
+              transition:border-color 0.25s, box-shadow 0.25s, background 0.25s; outline:none;
+            }
+            .wl-input:focus {
+              border-color:rgba(99,102,241,0.72); background:rgba(255,255,255,0.97);
+              box-shadow:0 0 0 4px rgba(99,102,241,0.13), 0 2px 14px rgba(99,102,241,0.16);
+            }
+            .wl-role-tab { transition:all 0.22s cubic-bezier(.22,1,.36,1); }
+            .wl-role-tab:hover { transform:translateY(-2px); }
+            .wl-btn { transition:all 0.25s cubic-bezier(.22,1,.36,1); }
+            .wl-btn:hover:not(:disabled) { transform:translateY(-2px); box-shadow:0 16px 48px rgba(99,102,241,0.48) !important; }
+            .wl-btn:active:not(:disabled) { transform:translateY(0); }
+            .wl-link { color:#6366f1; background:none; border:none; cursor:pointer; font-size:13px; font-weight:600; font-family:inherit; transition:color 0.2s; padding:0; }
+            .wl-link:hover { color:#4338ca; text-decoration:underline; }
+            .wl-demo-btn { transition:all 0.2s; }
+            .wl-demo-btn:hover { background:rgba(99,102,241,0.07) !important; border-color:rgba(99,102,241,0.32) !important; }
+          `}</style>
+
+          <div
+            className={shake ? 'wl-card-shake' : 'wl-card'}
+            style={{
+              position:'relative', zIndex:10, width:'100%', maxWidth:448, margin:16,
+              background:'rgba(255,255,255,0.68)', backdropFilter:'blur(30px)', WebkitBackdropFilter:'blur(30px)',
+              border:'1.5px solid rgba(255,255,255,0.88)', borderRadius:30,
+              boxShadow:'0 8px 44px rgba(99,102,241,0.18), 0 2px 80px rgba(139,92,246,0.10)',
+            }}
+          >
+            {view === 'login' && (
+              <>
+                <div style={{ padding:'34px 34px 20px', textAlign:'center', borderBottom:'1px solid rgba(200,205,255,0.3)' }}>
+                  <div style={{
+                    width:70, height:70, margin:'0 auto 14px', borderRadius:22,
+                    background:'linear-gradient(135deg, #6366f1, #8b5cf6, #f59e0b)',
+                    display:'flex', alignItems:'center', justifyContent:'center',
+                    fontSize:20, fontWeight:900, color:'white', letterSpacing:'-1px',
+                    boxShadow:'0 6px 28px rgba(99,102,241,0.42)',
+                  }}>AEC</div>
+                  <h1 style={{ color:'#1e1b4b', fontSize:23, fontWeight:800, margin:'0 0 4px' }}>AEC Assist</h1>
+                  <p style={{ color:'rgba(71,85,105,0.78)', fontSize:13, margin:0, lineHeight:1.6 }}>
+                    Annapoorana Engineering College<br />
+                    <span style={{ color:activeColor, fontWeight:700 }}>Official Document Q&A Portal</span>
+                  </p>
+                </div>
+                <div style={{ padding:'18px 32px 0' }}>
+                  <p style={{ color:'rgba(100,116,139,0.6)', fontSize:11, fontWeight:700, textTransform:'uppercase', letterSpacing:'0.12em', marginBottom:10 }}>Select Portal</p>
+                  <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:8 }}>
+                    {DEMO_CREDENTIALS.map(cred => {
+                      const isActive = activeRole === cred.role;
+                      return (
+                        <button key={cred.role} className="wl-role-tab"
+                          onClick={() => { setActiveRole(cred.role); setError(''); setUsername(''); setPassword(''); }}
+                          style={{
+                            padding:'11px 6px', borderRadius:14,
+                            border: isActive ? `2px solid ${cred.color}` : '1.5px solid rgba(200,205,255,0.45)',
+                            background: isActive ? `rgba(${hexToRgb(cred.color)},0.12)` : 'rgba(255,255,255,0.55)',
+                            color: isActive ? cred.color : 'rgba(100,116,139,0.7)',
+                            cursor:'pointer', fontSize:11, fontWeight:700,
+                            display:'flex', flexDirection:'column', alignItems:'center', gap:5,
+                          }}>
+                          <span style={{ fontSize:22 }}>{cred.badge}</span>
+                          <span>{cred.label}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+                <form onSubmit={handleSubmit} style={{ padding:'18px 32px 26px' }}>
+                  <div style={{ marginBottom:14 }}>
+                    <label style={{ display:'block', color:'rgba(71,85,105,0.78)', fontSize:12, fontWeight:700, marginBottom:7, letterSpacing:'0.06em', textTransform:'uppercase' }}>Username</label>
+                    <div style={{ position:'relative' }}>
+                      <span style={{ position:'absolute', left:13, top:'50%', transform:'translateY(-50%)', color:'rgba(100,116,139,0.5)', fontSize:16 }}>👤</span>
+                      <input className="wl-input" type="text" value={username}
+                        onChange={e => { setUsername(e.target.value); setError(''); }}
+                        placeholder={selectedCred.username} autoComplete="username" />
+                    </div>
+                  </div>
+                  <div style={{ marginBottom:10 }}>
+                    <label style={{ display:'block', color:'rgba(71,85,105,0.78)', fontSize:12, fontWeight:700, marginBottom:7, letterSpacing:'0.06em', textTransform:'uppercase' }}>Password</label>
+                    <div style={{ position:'relative' }}>
+                      <span style={{ position:'absolute', left:13, top:'50%', transform:'translateY(-50%)', color:'rgba(100,116,139,0.5)', fontSize:16 }}>🔒</span>
+                      <input className="wl-input" type={showPass ? 'text' : 'password'} value={password}
+                        onChange={e => { setPassword(e.target.value); setError(''); }}
+                        placeholder="••••••••" autoComplete="current-password" style={{ paddingRight:44 }} />
+                      <button type="button" onClick={() => setShowPass(v => !v)}
+                        style={{ position:'absolute', right:12, top:'50%', transform:'translateY(-50%)', background:'none', border:'none', cursor:'pointer', color:'rgba(100,116,139,0.55)', fontSize:16 }}>
+                        {showPass ? '🙈' : '👁️'}
+                      </button>
+                    </div>
+                  </div>
+                  <div style={{ textAlign:'right', marginBottom:16 }}>
+                    <button type="button" className="wl-link" onClick={() => { setView('forgot'); setError(''); }}>Forgot password?</button>
+                  </div>
+                  {error && (
+                    <div style={{ marginBottom:14, padding:'10px 14px', background:'rgba(239,68,68,0.08)', border:'1.5px solid rgba(239,68,68,0.25)', borderRadius:10, color:'#dc2626', fontSize:13 }}>
+                      ⚠️ {error}
+                    </div>
+                  )}
+                  <button className="wl-btn" type="submit" disabled={loading} style={{
+                    width:'100%', padding:'14px', borderRadius:14, border:'none', cursor: loading ? 'not-allowed' : 'pointer',
+                    background: loading ? `rgba(${hexToRgb(activeColor)},0.4)` : 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 55%, #a855f7 100%)',
+                    color:'white', fontWeight:700, fontSize:15, boxShadow:`0 8px 28px rgba(${hexToRgb(activeColor)},0.38)`,
+                    display:'flex', alignItems:'center', justifyContent:'center', gap:10,
+                  }}>
+                    {loading ? 'Signing in...' : `Sign in as ${selectedCred.label}`}
+                  </button>
+
+                  <div style={{ marginTop:16, textAlign:'center', fontSize:13, color:'rgba(71,85,105,0.85)', display:'flex', alignItems:'center', justifyContent:'center', gap:6 }}>
+                    <span>Don't have an account?</span>
+                    <button type="button" className="wl-link" style={{ fontSize:13, fontWeight:700, color:activeColor }} onClick={() => { setView('register'); setError(''); }}>
+                      Create account
+                    </button>
+                  </div>
+
+                  <div style={{ marginTop:12, textAlign:'center' }}>
+                    <button type="button" className="wl-demo-btn" onClick={handleFillDemo} style={{
+                      background:'rgba(255,255,255,0.65)', border:'1.5px solid rgba(200,205,255,0.5)',
+                      borderRadius:9, padding:'7px 20px', color:'rgba(71,85,105,0.7)', fontSize:12, cursor:'pointer', fontWeight:600,
+                    }}>Use demo credentials →</button>
+                  </div>
+                </form>
+              </>
+            )}
+
+            {view === 'register' && (
+              <div className="wl-fview" style={{ padding:'30px 32px 28px' }}>
+                <div style={{ textAlign:'center', marginBottom:18 }}>
+                  <div style={{ width:52, height:52, margin:'0 auto 10px', borderRadius:16, background:'linear-gradient(135deg, #6366f1, #8b5cf6)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:22, color:'white' }}>✨</div>
+                  <h2 style={{ color:'#1e1b4b', fontSize:21, fontWeight:800, margin:'0 0 4px' }}>Create Account</h2>
+                  <p style={{ color:'rgba(71,85,105,0.72)', fontSize:12, margin:0 }}>Register for AEC Assist Portal access</p>
+                </div>
+                <form onSubmit={handleRegisterSubmit}>
+                  <div style={{ marginBottom:12 }}>
+                    <label style={{ display:'block', color:'rgba(71,85,105,0.78)', fontSize:11, fontWeight:700, marginBottom:5, textTransform:'uppercase' }}>Full Name</label>
+                    <input className="wl-input" type="text" value={regName} onChange={e => { setRegName(e.target.value); setRegError(''); }} placeholder="e.g. Ananya Sharma" style={{ padding:'11px 14px', fontSize:13 }} />
+                  </div>
+                  <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10, marginBottom:12 }}>
+                    <div>
+                      <label style={{ display:'block', color:'rgba(71,85,105,0.78)', fontSize:11, fontWeight:700, marginBottom:5, textTransform:'uppercase' }}>Username</label>
+                      <input className="wl-input" type="text" value={regUsername} onChange={e => { setRegUsername(e.target.value); setRegError(''); }} placeholder="username" style={{ padding:'11px 14px', fontSize:13 }} />
+                    </div>
+                    <div>
+                      <label style={{ display:'block', color:'rgba(71,85,105,0.78)', fontSize:11, fontWeight:700, marginBottom:5, textTransform:'uppercase' }}>Role</label>
+                      <select className="wl-input" value={regRole} onChange={e => setRegRole(e.target.value)} style={{ padding:'11px 14px', fontSize:13, cursor:'pointer' }}>
+                        <option value="student">Student</option>
+                        <option value="staff">Faculty / Staff</option>
+                        <option value="admin">Administrator</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div style={{ marginBottom:12 }}>
+                    <label style={{ display:'block', color:'rgba(71,85,105,0.78)', fontSize:11, fontWeight:700, marginBottom:5, textTransform:'uppercase' }}>Email Address</label>
+                    <input className="wl-input" type="email" value={regEmail} onChange={e => { setRegEmail(e.target.value); setRegError(''); }} placeholder="you@aec.edu.in" style={{ padding:'11px 14px', fontSize:13 }} />
+                  </div>
+                  <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10, marginBottom:14 }}>
+                    <div>
+                      <label style={{ display:'block', color:'rgba(71,85,105,0.78)', fontSize:11, fontWeight:700, marginBottom:5, textTransform:'uppercase' }}>Password</label>
+                      <input className="wl-input" type="password" value={regPassword} onChange={e => { setRegPassword(e.target.value); setRegError(''); }} placeholder="••••••••" style={{ padding:'11px 14px', fontSize:13 }} />
+                    </div>
+                    <div>
+                      <label style={{ display:'block', color:'rgba(71,85,105,0.78)', fontSize:11, fontWeight:700, marginBottom:5, textTransform:'uppercase' }}>Confirm</label>
+                      <input className="wl-input" type="password" value={regConfirmPass} onChange={e => { setRegConfirmPass(e.target.value); setRegError(''); }} placeholder="••••••••" style={{ padding:'11px 14px', fontSize:13 }} />
+                    </div>
+                  </div>
+                  {regError && (
+                    <div style={{ marginBottom:12, padding:'9px 13px', background:'rgba(239,68,68,0.08)', border:'1.5px solid rgba(239,68,68,0.25)', borderRadius:9, color:'#dc2626', fontSize:12 }}>
+                      ⚠️ {regError}
+                    </div>
+                  )}
+                  <button className="wl-btn" type="submit" disabled={regLoading} style={{
+                    width:'100%', padding:'13px', borderRadius:14, border:'none', cursor: regLoading ? 'not-allowed' : 'pointer',
+                    background:'linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7)', color:'white', fontWeight:700, fontSize:14,
+                  }}>
+                    {regLoading ? 'Creating Account...' : 'Create Account & Proceed'}
+                  </button>
+                  <div style={{ textAlign:'center', marginTop:14 }}>
+                    <button type="button" className="wl-link" onClick={() => setView('login')}>← Already have an account? Sign in</button>
+                  </div>
+                </form>
+              </div>
+            )}
+
+            {view === 'forgot' && (
+              <div className="wl-fview" style={{ padding:'38px 32px 32px' }}>
+                <div style={{ textAlign:'center', marginBottom:22 }}>
+                  <div style={{ fontSize:44, marginBottom:12 }}>🔑</div>
+                  <h2 style={{ color:'#1e1b4b', fontSize:20, fontWeight:800, margin:'0 0 6px' }}>Forgot Password?</h2>
+                  <p style={{ color:'rgba(71,85,105,0.72)', fontSize:13, margin:0 }}>Enter your registered email address.</p>
+                </div>
+                <form onSubmit={handleForgotSubmit}>
+                  <div style={{ marginBottom:14 }}>
+                    <label style={{ display:'block', color:'rgba(71,85,105,0.78)', fontSize:12, fontWeight:700, marginBottom:7, textTransform:'uppercase' }}>Email Address</label>
+                    <input className="wl-input" type="email" value={fpEmail} onChange={e => { setFpEmail(e.target.value); setFpError(''); }} placeholder="you@aec.edu.in" style={{ padding:'11px 14px' }} />
+                  </div>
+                  {fpError && (
+                    <div style={{ marginBottom:12, padding:'9px 13px', background:'rgba(239,68,68,0.08)', border:'1.5px solid rgba(239,68,68,0.25)', borderRadius:9, color:'#dc2626', fontSize:13 }}>
+                      ⚠️ {fpError}
+                    </div>
+                  )}
+                  <button className="wl-btn" type="submit" disabled={fpLoading} style={{ width:'100%', padding:'13px', borderRadius:14, border:'none', background:'linear-gradient(135deg, #6366f1, #8b5cf6)', color:'white', fontWeight:700 }}>
+                    {fpLoading ? 'Sending...' : 'Send Reset Link'}
+                  </button>
+                  <div style={{ textAlign:'center', marginTop:14 }}>
+                    <button type="button" className="wl-link" onClick={() => setView('login')}>← Back to sign in</button>
+                  </div>
+                </form>
+              </div>
+            )}
+
+            {view === 'forgot-sent' && (
+              <div className="wl-fview" style={{ padding:'46px 32px', textAlign:'center' }}>
+                <div style={{ fontSize:52, marginBottom:14 }}>✅</div>
+                <h2 style={{ color:'#1e1b4b', fontSize:20, fontWeight:800, margin:'0 0 10px' }}>Check Your Email</h2>
+                <p style={{ color:'rgba(71,85,105,0.72)', fontSize:13, lineHeight:1.72, margin:'0 0 22px' }}>
+                  A password reset link has been sent to<br />
+                  <strong style={{ color:'#6366f1' }}>{fpEmail}</strong>
+                </p>
+                <button className="wl-btn" type="button" onClick={() => setView('login')} style={{ background:'linear-gradient(135deg, #6366f1, #8b5cf6)', border:'none', borderRadius:12, padding:'12px 32px', color:'white', fontWeight:700 }}>← Back to Sign In</button>
+              </div>
+            )}
+
+            <div style={{ padding:'12px 32px 18px', textAlign:'center', borderTop:'1px solid rgba(200,205,255,0.3)' }}>
+              <p style={{ color:'rgba(100,116,139,0.48)', fontSize:11, margin:0 }}>
+                AEC Salem · NH-47 Sankari Main Road · Salem 636308
+              </p>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('login-root')).render(<StandaloneLoginPage />);
+  </script>
+  {% endraw %}
+</body>
+</html>

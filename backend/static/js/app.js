@@ -559,10 +559,13 @@ function RootApp() {
 
   const handleLogout = () => {
     sessionStorage.removeItem('aec_auth');
-    setAuthed(false);
+    window.location.href = '/login';
   };
 
-  if (!authed) return <LoginPage onLogin={handleLogin} />;
+  if (!authed) {
+    window.location.href = '/login';
+    return null;
+  }
   return <App initialRole={authData.role || 'student'} authData={authData} onLogout={handleLogout} />;
 }
 

@@ -32,8 +32,13 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/')
+@app.route('/dashboard')
 def index():
     return render_template('index.html')
+
+@app.route('/login')
+def login_page():
+    return render_template('login.html')
 
 @app.route('/api/categories', methods=['GET'])
 def get_categories():

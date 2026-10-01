@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AEC CampusMind AI | Annapoorana Engineering College, Salem</title>
   
+  <!-- Auth Guard -->
+  <script>
+    if (!sessionStorage.getItem('aec_auth')) {
+      window.location.href = '/login';
+    }
+  </script>
+
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
