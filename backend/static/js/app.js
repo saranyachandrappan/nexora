@@ -823,30 +823,32 @@ function App({ initialRole, authData = {}, onLogout }) {
         setMessages([
           {
             sender: 'bot',
-            text: `### 🎓 Welcome to AEC Assist!
-**Official College Document Assistant for Annapoorana Engineering College (AEC), Salem**
-*(Approved by AICTE, New Delhi & Affiliated to Anna University, Chennai — NH-47 Sankari Main Road, Periaseeragapadi, Salem - 636308)*
+            text: `### 🎓 Welcome to AEC Assist RAG!
+**Official Campus AI Assistant for Annapoorana Engineering College (AEC), Salem**
+*(Approved by AICTE, New Delhi & Affiliated to Anna University, Chennai • NH-47 Sankari Main Road, Salem - 636308)*
 
-I answer questions strictly using verified AEC Salem official documents, including:
-- **Official College Directory & Portals**: Principal Dr. A. Anbuchezian, Helplines (+91 9786911333, 9442000648), Online Fee Payment (aecsalem.edu.in/pay/).
-- **Anna University (CAC) Syllabus & Schedules**: Minimum 90 instructional working days, R-2021 CBCS 160-165 credits, assessment entry periods I-IV on coe1.
-- **Anna University Academic Regulations (R-2021)**: 75% Mandatory Attendance, 65%-74% Medical Condonation (₹750 Fee), CIA 40% / ESE 60% Split.
-- **Tuition Fee & Bus Remittance (Odd Sem 2026-27)**: Payment deadlines (Oct 25, 2026 without fine), ₹100/day fine, First Graduate & SC/ST scholarships.
-- **Master Examination Timetables & Hall Allocations**: Exam dates, sessions, hall tickets, and prohibited malpractice rules.
-- **Corporate Placement & Naan Mudhalvan Policy**: Tier-1 CTC >= 8 LPA criteria (7.5 CGPA), Dream offers, 8th Sem Internship NOC.
-- **Residential Hostel By-Laws**: Curfew gate timings (Boys 8:15 PM, Girls 7:45 PM), weekend home e-Passes & mess timings.
-- **Campus Transport Network**: 26 college bus routes connecting Salem, Sankari, Tiruchengode, Edappadi, & Erode.
-- **Faculty & Staff Regulations**: Casual Leaves (12 CL), Restricted Holidays (3 RH), Anna University Zonal OD (15 days), & Scopus Q1 cash incentives.
+---
+### 🌟 Quick Campus Portals & Services:
+- 🏛️ **Official College Website**: [aecsalem.edu.in](https://aecsalem.edu.in/) — Programs, Faculty Directory, NAAC/NBA Accreditations & Infrastructure.
+- 🎓 **Admissions & Registration 2026**: [admission.aecsalem.edu.in](https://admission.aecsalem.edu.in/) — Online registration, eligibility cutoff, & fee waivers.
+- 💳 **Online Fee Payment Portal**: [aecsalem.edu.in/pay](https://aecsalem.edu.in/pay/) — Tuition, hostel, & exam fees.
+- 📜 **Official Documents Hub**: 35 active circulars, timetables, syllabus regulations, and bus routes.
 
-*Type your question below or click a suggested query.*`,
+---
+### 💡 Ask me anything about:
+- **Admissions 2026**: Application procedure, cutoff marks, and First Graduate / PMSS scholarships.
+- **Academic Timetables**: CSE, AI&DS, ECE, EEE, Mech, Civil class hours and CIA exam dates.
+- **Regulations (Anna Univ R-2021)**: Attendance criteria (75%), CIA marks calculation, and revaluation fees.
+- **Campus Facilities**: Residential hostel gate timings, 26 college bus routes, and Central Library DELNET access.
+- **Helplines**: Principal Dr. A. Anbuchezian, Admission Helpline (+91 9786911333 / 9442000648).`,
             sources: [],
             confidence: 100,
             suggested: userRole === 'student' ? [
-              "Who is the principal of AEC Salem and what is the official contact number?",
-              "Where can I pay college tuition fees online?",
+              "How do I apply for 2026 Admissions on the College Admission Portal?",
+              "What are the academic departments and engineering courses on the College Website?",
+              "Where can I pay college tuition fees online via the College Website Portal?",
               "What is the minimum attendance requirement and condonation fee under R-2021?",
-              "When is the tuition fee payment deadline without fine at AEC Salem?",
-              "What are the college bus routes covering Salem, Sankari and Tiruchengode?"
+              "What are the college bus routes and hostel curfew gate timings?"
             ] : [
               "How many Casual Leaves (CL) and Anna University Zonal OD days are credited per year?",
               "What is the cash incentive for publishing in Scopus / SCI Q1 journals?",
@@ -1592,6 +1594,57 @@ I answer questions strictly using verified AEC Salem official documents, includi
                 <i data-lucide="trash-2" className="w-3.5 h-3.5"></i>
                 Clear Session
               </button>
+            </div>
+
+            {/* Quick Campus Portals Access Bar inside AEC Assist RAG */}
+            <div className="px-4 sm:px-6 py-2.5 bg-white/90 dark:bg-slate-900/90 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-3 text-xs overflow-x-auto custom-scrollbar shadow-sm">
+              <div className="flex items-center gap-2 shrink-0">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 hidden sm:inline">Portals:</span>
+                <button
+                  onClick={() => setActiveTab('college-site')}
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 hover:bg-blue-100 dark:bg-blue-950/60 dark:hover:bg-blue-900 text-blue-700 dark:text-blue-300 font-bold rounded-xl border border-blue-200 dark:border-blue-800/80 transition-all shadow-sm hover:scale-105"
+                  title="Open College Website Tab"
+                >
+                  <i data-lucide="globe" className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400"></i>
+                  <span>🏛️ College Website</span>
+                </button>
+                <button
+                  onClick={() => setActiveTab('admissions')}
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-amber-50 hover:bg-amber-100 dark:bg-amber-950/60 dark:hover:bg-amber-900 text-amber-700 dark:text-amber-300 font-bold rounded-xl border border-amber-200 dark:border-amber-800/80 transition-all shadow-sm hover:scale-105"
+                  title="Open College Admission Portal Tab"
+                >
+                  <i data-lucide="graduation-cap" className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400"></i>
+                  <span>🎓 Admission Portal</span>
+                </button>
+                <button
+                  onClick={() => setActiveTab('documents')}
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-purple-50 hover:bg-purple-100 dark:bg-purple-950/60 dark:hover:bg-purple-900 text-purple-700 dark:text-purple-300 font-bold rounded-xl border border-purple-200 dark:border-purple-800/80 transition-all shadow-sm hover:scale-105"
+                  title="Open Documents Hub"
+                >
+                  <i data-lucide="file-text" className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400"></i>
+                  <span>📜 Documents Hub ({documents.length})</span>
+                </button>
+              </div>
+
+              <div className="flex items-center gap-3 shrink-0">
+                <a
+                  href="https://aecsalem.edu.in/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-300 text-xs font-semibold flex items-center gap-1 transition-colors"
+                >
+                  <span>aecsalem.edu.in ↗</span>
+                </a>
+                <span className="text-slate-300 dark:text-slate-700">•</span>
+                <a
+                  href="https://admission.aecsalem.edu.in/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-slate-600 hover:text-amber-600 dark:text-slate-400 dark:hover:text-amber-300 text-xs font-semibold flex items-center gap-1 transition-colors"
+                >
+                  <span>admission.aecsalem.edu.in ↗</span>
+                </a>
+              </div>
             </div>
 
             {/* Chat Messages Feed */}
