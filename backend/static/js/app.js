@@ -172,7 +172,98 @@ function LoginPage({ onLogin }) {
       fontFamily: "'Plus Jakarta Sans', sans-serif",
       display: 'flex', alignItems: 'center', justifyContent: 'center',
     }}>
-      <canvas ref={canvasRef} style={{ position:'absolute', inset:0, width:'100%', height:'100%', zIndex:0 }} />
+                {/* TOP TASK BAR / HEADER BAR */}
+          <nav style={{
+            position:'fixed', top:0, left:0, right:0, height:64, zIndex:50,
+            background:'rgba(255,255,255,0.78)', backdropFilter:'blur(24px)', WebkitBackdropFilter:'blur(24px)',
+            borderBottom:'1px solid rgba(200,205,255,0.45)',
+            padding:'0 28px', display:'flex', alignItems:'center', justifyContent:'space-between',
+            boxShadow:'0 4px 20px rgba(99,102,241,0.06)'
+          }}>
+            <div style={{ display:'flex', alignItems:'center', gap:12 }}>
+              <div style={{
+                width:36, height:36, borderRadius:12,
+                background:'linear-gradient(135deg, #6366f1, #8b5cf6, #f59e0b)',
+                display:'flex', alignItems:'center', justifyContent:'center',
+                color:'white', fontWeight:900, fontSize:13, letterSpacing:'-0.5px',
+                boxShadow:'0 4px 14px rgba(99,102,241,0.3)'
+              }}>AEC</div>
+              <div>
+                <a href="/dashboard" style={{ textDecoration:'none', color:'#1e1b4b', fontWeight:800, fontSize:16, letterSpacing:'-0.3px' }}>AEC Assist</a>
+                <span style={{ fontSize:11, color:'rgba(100,116,139,0.7)', marginLeft:8, display:'inline-block' }}>Annapoorana Engineering College</span>
+              </div>
+            </div>
+
+            <div style={{ display:'flex', alignItems:'center', gap:16 }}>
+              <a href="https://aecsalem.edu.in/" target="_blank" style={{ textDecoration:'none', color:'rgba(71,85,105,0.85)', fontSize:13, fontWeight:600 }}>
+                🏠 College Website
+              </a>
+              <a href="/dashboard" id="nav-dashboard-link" style={{
+                textDecoration:'none', color:'#4338ca', background:'rgba(99,102,241,0.12)',
+                border:'1.5px solid rgba(99,102,241,0.35)', borderRadius:11, padding:'8px 18px',
+                fontSize:13, fontWeight:700, display:'flex', alignItems:'center', gap:7, transition:'all 0.2s'
+              }}>
+                📊 Dashboard →
+              </a>
+            </div>
+          </nav>
+
+                    {/* TOP TASK BAR / HEADER BAR */}
+          <nav style={{
+            position:'fixed', top:0, left:0, right:0, height:64, zIndex:50,
+            background:'rgba(255,255,255,0.82)', backdropFilter:'blur(24px)', WebkitBackdropFilter:'blur(24px)',
+            borderBottom:'1.5px solid rgba(200,205,255,0.5)',
+            padding:'0 32px', display:'flex', alignItems:'center', justifyContent:'space-between',
+            boxShadow:'0 4px 24px rgba(99,102,241,0.08)'
+          }}>
+            <div style={{ display:'flex', alignItems:'center', gap:14 }}>
+              <div style={{
+                width:38, height:38, borderRadius:12,
+                background:'linear-gradient(135deg, #6366f1, #8b5cf6, #f59e0b)',
+                display:'flex', alignItems:'center', justifyContent:'center',
+                color:'white', fontWeight:900, fontSize:14, letterSpacing:'-0.5px',
+                boxShadow:'0 4px 14px rgba(99,102,241,0.35)'
+              }}>AEC</div>
+              <div>
+                <a href="/dashboard" style={{ textDecoration:'none', color:'#1e1b4b', fontWeight:800, fontSize:17, letterSpacing:'-0.3px', display:'flex', alignItems:'center', gap:6 }}>
+                  AEC Assist <span style={{ fontSize:10, background:'rgba(99,102,241,0.12)', color:'#6366f1', padding:'2px 7px', borderRadius:6, fontWeight:700 }}>AI Portal</span>
+                </a>
+                <span style={{ fontSize:11, color:'rgba(100,116,139,0.75)', display:'block', lineHeight:1 }}>Annapoorana Engineering College, Salem</span>
+              </div>
+            </div>
+
+            <div style={{ display:'flex', alignItems:'center', gap:18 }}>
+              <a href="https://aecsalem.edu.in/" target="_blank" style={{
+                textDecoration:'none', color:'rgba(71,85,105,0.85)', fontSize:13, fontWeight:600,
+                display:'flex', alignItems:'center', gap:6, padding:'6px 12px', borderRadius:8,
+                transition:'all 0.2s'
+              }}>
+                🏛️ <span>College Site</span>
+              </a>
+
+              <a href="https://admission.aecsalem.edu.in/" target="_blank" style={{
+                textDecoration:'none', color:'rgba(71,85,105,0.85)', fontSize:13, fontWeight:600,
+                display:'flex', alignItems:'center', gap:6, padding:'6px 12px', borderRadius:8,
+                transition:'all 0.2s'
+              }}>
+                🎓 <span>Admissions</span>
+              </a>
+
+              {/* DASHBOARD OPTION IN TASK BAR */}
+              <a href="/dashboard" id="taskbar-dashboard-btn" style={{
+                textDecoration:'none', color:'white',
+                background:'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+                border:'none', borderRadius:11, padding:'8px 20px',
+                fontSize:13, fontWeight:700, display:'flex', alignItems:'center', gap:8,
+                boxShadow:'0 4px 18px rgba(99,102,241,0.35)', transition:'all 0.25s'
+              }}>
+                <span>📊 Dashboard</span>
+                <span>→</span>
+              </a>
+            </div>
+          </nav>
+
+          <canvas ref={canvasRef} style={{ position:'absolute', inset:0, width:'100%', height:'100%', zIndex:0 }} />
       <div style={{ position:'absolute', top:'-12%', left:'-8%', width:520, height:520, borderRadius:'50%',
         background:'radial-gradient(circle, rgba(99,102,241,0.18) 0%, transparent 70%)',
         animation:'wlOrbFloat 8s ease-in-out infinite', zIndex:1, filter:'blur(2px)' }} />
