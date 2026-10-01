@@ -1054,6 +1054,20 @@ I answer questions strictly using verified AEC Salem official documents, includi
     }
   };
 
+
+  // Keyboard Back Key listener to navigate to Login
+  useEffect(() => {
+    const handleKeyDownBack = (e) => {
+      // If user presses Alt+ArrowLeft or Backspace when not in an input/textarea
+      const isInputActive = ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement?.tagName);
+      if ((e.altKey && e.key === 'ArrowLeft') || (e.key === 'Backspace' && !isInputActive && !selectedDocModal)) {
+        window.location.href = '/login';
+      }
+    };
+    window.addEventListener('keydown', handleKeyDownBack);
+    return () => window.removeEventListener('keydown', handleKeyDownBack);
+  }, [selectedDocModal]);
+
   const handleResetSampleData = async () => {
     if (!confirm("This will restore default sample AEC Salem official circulars, regulations, timetables, and bylaws. Proceed?")) return;
     try {
@@ -1401,6 +1415,13 @@ I answer questions strictly using verified AEC Salem official documents, includi
             <i data-lucide="rotate-ccw" className="w-3.5 h-3.5"></i>
             Reset Sample Knowledge
           </button>
+          <a
+            href="/login"
+            className="w-full text-xs py-2 px-3 bg-gradient-to-r from-indigo-600/30 to-purple-600/30 hover:from-indigo-600/50 hover:to-purple-600/50 text-indigo-300 hover:text-white rounded-lg transition-all flex items-center justify-center gap-1.5 border border-indigo-500/30 font-semibold shadow-sm"
+          >
+            <i data-lucide="arrow-left" className="w-3.5 h-3.5"></i>
+            ← Back to Login
+          </a>
         </div>
       </aside>
 
@@ -1493,14 +1514,24 @@ I answer questions strictly using verified AEC Salem official documents, includi
             </h2>
           </div>
 
-          <div className="flex items-center space-x-3 text-xs">
+          <div className="flex items-center space-x-2 sm:space-x-3 text-xs">
+            <a
+              href="/login"
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-50 hover:bg-indigo-100 dark:bg-indigo-950/80 dark:hover:bg-indigo-900/90 text-indigo-600 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800/80 rounded-xl font-bold text-xs transition-all shadow-sm hover:shadow"
+              title="Return to AEC Login Page (Alt + ←)"
+            >
+              <i data-lucide="arrow-left" className="w-3.5 h-3.5"></i>
+              <span className="hidden sm:inline">Back to Login</span>
+              <span className="sm:hidden">Login</span>
+            </a>
             <div className="hidden md:flex items-center gap-1.5 px-3 py-1 bg-blue-500/10 text-blue-700 dark:text-blue-300 border border-blue-500/20 rounded-full font-medium">
               <i data-lucide="building" className="w-3.5 h-3.5 text-blue-500"></i>
-              <span>AEC Salem • Anna Univ Affiliated</span>
+              <span>AEC Salem</span>
             </div>
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-slate-100 dark:bg-slate-800 rounded-full text-slate-700 dark:text-slate-300 font-medium">
+            <div className="flex items-center gap-2 px-2.5 sm:px-3 py-1.5 bg-slate-100 dark:bg-slate-800 rounded-full text-slate-700 dark:text-slate-300 font-medium">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span>RAG Engine Online</span>
+              <span className="hidden sm:inline">RAG Engine Online</span>
+              <span className="sm:hidden text-[11px]">Online</span>
             </div>
           </div>
         </header>
